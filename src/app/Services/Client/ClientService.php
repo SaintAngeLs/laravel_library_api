@@ -3,17 +3,22 @@
 namespace App\Services\Client;
 
 use App\Dto\ClientDTO;
-use App\Exceptions\Core\Client\ClientNotFoundException;
-use App\Exceptions\Core\Client\ClientHasRentedBooksException;
+use App\Exceptions\Core\Client\ClientHasRentedBooksException as CoreClientHasRentedBooksException;
+use App\Exceptions\Core\Client\ClientNotFoundException as CoreClientNotFoundException;
+use App\Exceptions\Http\Client\ClientNotFoundException;
+use App\Exceptions\Http\Client\ClientHasRentedBooksException;
 use App\Repositories\ClientRepositoryInterface;
+use App\Services\Book\BookService;
 
 class ClientService
 {
     protected $clientRepository;
+    protected $bookService;
 
-    public function __construct(ClientRepositoryInterface $clientRepository)
+    public function __construct(ClientRepositoryInterface $clientRepository, BookService $bookService)
     {
         $this->clientRepository = $clientRepository;
+        $this->bookService = $bookService;
     }
 
     public function listClients(): mixed
@@ -26,13 +31,12 @@ class ClientService
 
     public function getClientDetails($id): ClientDTO
     {
-        $client = $this->clientRepository->findClientById($id);
-
-        if (!$client) {
-            throw new ClientNotFoundException();
+        try {
+            $client = $this->clientRepository->findClientById($id);
+            return new ClientDTO($client);
+        } catch (CoreClientNotFoundException $e) {
+            throw new ClientNotFoundException($e->getMessage());
         }
-
-        return new ClientDTO($client);
     }
 
     public function createClient($data): ClientDTO
@@ -43,16 +47,22 @@ class ClientService
 
     public function deleteClient($id)
     {
-        $client = $this->clientRepository->findClientById($id);
+        try {
+            $client = $this->clientRepository->findClientById($id);
 
-        if (!$client) {
-            throw new ClientNotFoundException();
+            if (!$client) {
+                throw new ClientNotFoundException();
+            }
+
+            if ($client->rentedBooks->count() > 0) {
+                throw new ClientHasRentedBooksException();
+            }
+
+            return $this->clientRepository->deleteClient($id);
+        } catch (CoreClientNotFoundException $e) {
+            throw new ClientNotFoundException($e->getMessage());
+        } catch (CoreClientHasRentedBooksException $e) {
+            throw new ClientHasRentedBooksException($e->getMessage());
         }
-
-        if ($client->rentedBooks()->count() > 0) {
-            throw new ClientHasRentedBooksException();
-        }
-
-        return $this->clientRepository->deleteClient($id);
     }
 }

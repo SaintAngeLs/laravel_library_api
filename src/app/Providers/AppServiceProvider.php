@@ -17,10 +17,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Binding interfaces to implementations
         $this->app->bind(BookRepositoryInterface::class, EloquentBookRepository::class);
         $this->app->bind(ClientRepositoryInterface::class, EloquentClientRepository::class);
 
-
+        // Correctly bind BookService
         $this->app->bind(BookService::class, function ($app) {
             return new BookService(
                 $app->make(BookRepositoryInterface::class),
@@ -28,9 +29,11 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
+        // Correctly bind ClientService (ClientRepositoryInterface should be passed first)
         $this->app->bind(ClientService::class, function ($app) {
             return new ClientService(
-                $app->make(ClientRepositoryInterface::class)
+                $app->make(ClientRepositoryInterface::class), // Pass ClientRepositoryInterface first
+                $app->make(BookService::class)  // Then pass the BookService
             );
         });
     }

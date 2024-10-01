@@ -60,7 +60,7 @@ return [
              * Middleware allows to prevent unexpected access to API documentation
              */
             'middleware' => [
-                'api' => [],
+                'api' => ['web'],
                 'asset' => [],
                 'docs' => [],
                 'oauth2_callback' => [],
@@ -98,7 +98,7 @@ return [
              * @deprecated Please use `scanOptions.exclude`
              * `scanOptions.exclude` overwrites this
              */
-            'excludes' => ['app/Exceptions'],
+            'excludes' => [],
         ],
 
         'scanOptions' => [
@@ -156,7 +156,7 @@ return [
              * @note This option overwrites `paths.excludes`
              * @see \OpenApi\scan
              */
-            'exclude' => ['app/Exceptions/'],
+            'exclude' => [],
 
             /*
              * Allows to generate specs either for OpenAPI 3.0.0 or OpenAPI 3.1.0.
@@ -173,6 +173,14 @@ return [
                 /*
                  * Examples of Security schemes
                  */
+
+
+                 'csrf' => [
+                        'type' => 'apiKey',
+                        'in' => 'header',
+                        'name' => 'X-CSRF-TOKEN',
+                        'description' => 'CSRF token for protected requests',
+                    ],
                 /*
                 'api_key_security_example' => [ // Unique name of security
                     'type' => 'apiKey', // The type of the security scheme. Valid values are "basic", "apiKey" or "oauth2".

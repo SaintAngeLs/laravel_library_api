@@ -131,9 +131,12 @@ class ClientController extends Controller
             $this->clientService->deleteClient($id);
             return response()->json(['message' => 'Client deleted successfully.'], 200);
         } catch (ClientNotFoundException $e) {
-            return response()->json(['error' => $e->getMessage()], $e->getCode());
+            return response()->json(['error' => $e->getMessage()], 404);
         } catch (ClientHasRentedBooksException $e) {
-            return response()->json(['error' => $e->getMessage()], $e->getCode());
+            return response()->json(['error' => $e->getMessage()], 400);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'An unexpected error occurred.'], 500);
         }
     }
+
 }

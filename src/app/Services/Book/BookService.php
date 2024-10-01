@@ -5,6 +5,7 @@ namespace App\Services\Book;
 use App\Dto\BookDTO;
 use App\Exceptions\Core\Book\BookAlreadyRentedException;
 use App\Exceptions\Http\Book\BookNotFoundException;
+use App\Exceptions\Http\Book\BookNotRentedException;
 use App\Repositories\BookRepositoryInterface;
 use App\Repositories\ClientRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -78,6 +79,8 @@ class BookService
      */
     public function rentBook($bookId, $clientId)
     {
+        $client = $this->clientRepository->findClientById($clientId);
+
         $book = $this->bookRepository->findBookById($bookId);
 
         if (!$book) {
@@ -102,6 +105,11 @@ class BookService
             throw new BookNotFoundException();
         }
 
+        if (!$book->is_rented) {
+            throw new BookNotRentedException();
+        }
+
         return $this->bookRepository->returnBook($book);
     }
+
 }

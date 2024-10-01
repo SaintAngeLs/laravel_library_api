@@ -10,11 +10,11 @@
     },
     "servers": [
         {
-            "url": "http://laravel.library.api",
+            "url": "http://localhost:8000",
             "description": "Library API server"
         },
         {
-            "url": "http://laravel.library.api/v3"
+            "url": "http://localhost:8000/v3"
         }
     ],
     "paths": {
@@ -255,6 +255,9 @@
                     "404": {
                         "description": "Book not found"
                     },
+                    "409": {
+                        "description": "Book is not currently rented"
+                    },
                     "500": {
                         "description": "Server error"
                     }
@@ -414,6 +417,29 @@
                 },
                 "type": "object"
             },
+            "BookNotRentedException": {
+                "title": "BookNotRentedException",
+                "description": "Exception thrown when attempting to return a book that is not currently rented",
+                "required": [
+                    "message",
+                    "code"
+                ],
+                "properties": {
+                    "message": {
+                        "description": "Exception message",
+                        "type": "string"
+                    },
+                    "code": {
+                        "description": "HTTP status code",
+                        "type": "integer"
+                    },
+                    "status": {
+                        "description": "HTTP error status",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "Book": {
                 "title": "Book",
                 "description": "Book model",
@@ -475,6 +501,14 @@
                     }
                 },
                 "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "csrf": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "X-CSRF-TOKEN",
+                "description": "CSRF token for protected requests"
             }
         }
     },

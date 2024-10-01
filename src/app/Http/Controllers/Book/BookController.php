@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Book;
 use App\Dto\BookDTO;
 use App\Exceptions\Http\Book\BookNotFoundException;
 use App\Exceptions\Http\Book\BookAlreadyRentedException;
+use App\Exceptions\Http\Book\BookNotRentedException;
+use App\Exceptions\Http\Client\ClientNotFoundException;
 use App\Http\Controllers\Controller;
 use App\Services\Book\BookService;
 use App\Http\Requests\Book\RentBookRequest;
@@ -182,6 +184,8 @@ class BookController extends Controller
         try {
             $this->bookService->rentBook($bookId, $request->client_id);
             return response()->json(['message' => 'Book rented successfully.']);
+        } catch (ClientNotFoundException $e) {
+            return response()->json(['error' => $e->getMessage()], 404);
         } catch (BookAlreadyRentedException $e) {
             return response()->json(['error' => $e->getMessage()], $e->getCode());
         } catch (BookNotFoundException $e) {
@@ -211,6 +215,7 @@ class BookController extends Controller
      *         )
      *     ),
      *     @OA\Response(response=404, description="Book not found"),
+     *     @OA\Response(response=409, description="Book is not currently rented"),
      *     @OA\Response(response=500, description="Server error")
      * )
      */
@@ -220,7 +225,12 @@ class BookController extends Controller
             $this->bookService->returnBook($bookId);
             return response()->json(['message' => 'Book returned successfully.']);
         } catch (BookNotFoundException $e) {
-            return response()->json(['error' => $e->getMessage()], $e->getCode());
+            return response()->json(['error' => $e->getMessage()], 404);
+        } catch (BookNotRentedException $e) {
+            return response()->json(['error' => $e->getMessage()], 409); 
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'An unexpected error occurred.'], 500);
         }
     }
+
 }

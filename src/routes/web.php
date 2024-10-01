@@ -22,6 +22,7 @@
 
 use App\Http\Controllers\Book\BookViewController;
 use App\Http\Controllers\Client\ClientViewController;
+use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Book\BookController;
 use App\Http\Controllers\Client\ClientController;
@@ -31,23 +32,25 @@ Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::prefix('v3')->group(function () {
+// Route::middleware([VerifyCsrfToken::class])->group(function () {
+    Route::prefix('v3')->group(function () {
 
-    Route::prefix('books')->group(function () {
-        Route::get('/', [BookController::class, 'index']);
-        Route::get('/search', [BookController::class, 'search']);
-        Route::get('/{id}', [BookController::class, 'show']);
-        Route::post('/{bookId}/rent', [BookController::class, 'rentBook']);
-        Route::post('/{bookId}/return', [BookController::class, 'returnBook']);
-    });
+        Route::prefix('books')->group(function () {
+            Route::get('/', [BookController::class, 'index']);
+            Route::get('/search', [BookController::class, 'search']);
+            Route::get('/{id}', [BookController::class, 'show']);
+            Route::post('/{bookId}/rent', action: [BookController::class, 'rentBook']);
+            Route::post('/{bookId}/return', [BookController::class, 'returnBook']);
+        });
 
-    Route::prefix('clients')->group(function () {
-        Route::get('/', [ClientController::class, 'index']);
-        Route::get('/{id}', [ClientController::class, 'show']);
-        Route::post('/', [ClientController::class, 'store']);
-        Route::delete('/{id}', [ClientController::class, 'destroy']);
+        Route::prefix('clients')->group(function () {
+            Route::get('/', [ClientController::class, 'index']);
+            Route::get('/{id}', [ClientController::class, 'show']);
+            Route::post('/', [ClientController::class, 'store']);
+            Route::delete('/{id}', [ClientController::class, 'destroy']);
+        });
     });
-});
+// });
 
 
 Route::prefix('pages')->group(function () {
