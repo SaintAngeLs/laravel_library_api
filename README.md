@@ -4,16 +4,32 @@ The **Laravel Library API** provides a structured and efficient way to manage a 
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Requirements](#requirements)
-- [Environment Variables](#environment-variables)
-- [Database Setup](#database-setup)
-- [API Documentation](#api-documentation)
-- [Routes](#routes)
-  - [API Routes](#api-routes)
-  - [Web Routes](#web-routes)
-- [Running Tests](#running-tests)
-- [License](#license)
+1. [Installation](#installation)
+2. [Requirements](#requirements)
+3. [Environment Variables](#environment-variables)
+4. [Database Setup](#database-setup)
+   1. [Creating the Database and User](#creating-the-database-and-user)
+5. [API Documentation](#api-documentation)
+6. [Routes](#routes)
+   1. [Base URL](#base-url)
+   2. [Authentication](#authentication)
+   3. [Books Endpoints](#books-endpoints)
+      1. [List All Books](#list-all-books)
+      2. [Search Books](#search-books)
+      3. [Get Book Details](#get-book-details)
+      4. [Rent a Book](#rent-a-book)
+      5. [Return a Book](#return-a-book)
+   4. [Clients Endpoints](#clients-endpoints)
+      1. [List All Clients](#list-all-clients)
+      2. [Get Client Details](#get-client-details)
+      3. [Create a New Client](#create-a-new-client)
+      4. [Delete a Client](#delete-a-client)
+   5. [Error Codes](#error-codes)
+   6. [Swagger Integration](#swagger-integration)
+   7. [Web Routes for MVC](#web-routes-for-mvc)
+7. [User Interface (Tailwind and MVC)](#user-interface-tailwind-and-mvc)
+8. [Running Tests](#running-tests)
+9. [License](#license)
 
 ## Installation
 
@@ -128,12 +144,56 @@ L5_SWAGGER_CONST_HOST=http://localhost:8000
     php artisan db:seed
     ```
 
+
+
+
+
+
+## Routes
+
+Endpoints of the public API are listed below. You can also check some example **curl** requests in the `book_api_v3.rest` file located at the root of the repository.
+
+
+---
+
+## API Documentation
+
+The API documentation is automatically generated using Swagger and can be accessed at:
+
+- **With a virtual host**: `http://laravel.library.api/api/documentation`
+- **Swagger UI Screenshot**:
+  ![Swagger UI](storage/app/public/swagger_ui.png)
+
+---
+
+4. **Migrate the database**:
+   ```bash
+   php artisan migrate
+   ```
+
+5. **Optional**: Seed the database:
+   ```bash
+   php artisan db:seed
+   ```
+
+## User Interface (Tailwind and MVC)
+
+In addition to the API, the user interface is built using **Tailwind CSS** and follows the **MVC** pattern. Below is a screenshot of the generated UI:
+
+![Generated UI using Tailwind and MVC](src/storage/app/public/ui_mvc.png)
+
+
+
+
 ## API Documentation
 
 The API documentation is automatically generated using Swagger and can be accessed at:
 
 - **With virtual host**: `http://laravel.library.api/api/documentation`
 - **Without virtual host**: `http://localhost:8000/api/documentation`
+
+![Swagger UI](src/storage/app/public/swagger_ui.png)
+
 
 Make sure the environment variable `L5_SWAGGER_CONST_HOST` is correctly set in your `.env` file to match your host URL.
 
@@ -419,6 +479,7 @@ DELETE /v3/clients/{id}
 ---
 
 ### **Swagger Integration**
+
 
 You can access the API documentation in a user-friendly UI by visiting the Swagger UI at `/api/documentation`. The Swagger UI provides the ability to interact with the API directly from the browser.
 ----
