@@ -162,7 +162,7 @@ The API documentation is automatically generated using Swagger and can be access
 
 - **With a virtual host**: `http://laravel.library.api/api/documentation`
 - **Swagger UI Screenshot**:
-  ![Swagger UI](storage/app/public/swagger_ui.png)
+  ![Swagger UI](src/public/images/swagger_ui.png)
 
 ---
 
@@ -180,7 +180,7 @@ The API documentation is automatically generated using Swagger and can be access
 
 In addition to the API, the user interface is built using **Tailwind CSS** and follows the **MVC** pattern. Below is a screenshot of the generated UI:
 
-![Generated UI using Tailwind and MVC](src/storage/app/public/ui_mvc.png)
+![Generated UI using Tailwind and MVC](src/public/images/ui_mvc.png)
 
 
 
