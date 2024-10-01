@@ -1,0 +1,525 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Library API Documentation",
+        "description": "This is the API documentation for the Library system.",
+        "contact": {
+            "email": "info@itsharppro.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Library API server"
+        },
+        {
+            "url": "http://localhost:8000/v3"
+        }
+    ],
+    "paths": {
+        "/v3/books": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "List books with pagination",
+                "description": "Get a paginated list of books with their details.",
+                "operationId": "getBooks",
+                "responses": {
+                    "200": {
+                        "description": "List of books",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Book"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/v3/books/search": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Search for books",
+                "description": "Search books by title, author, or publisher.",
+                "operationId": "searchBooks",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "Filter books by title",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "author",
+                        "in": "query",
+                        "description": "Filter books by author",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "publisher",
+                        "in": "query",
+                        "description": "Filter books by publisher",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "client",
+                        "in": "query",
+                        "description": "Filter books by client",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Search results",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Book"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/v3/books/{id}": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Get book details",
+                "description": "Retrieve details of a specific book by its ID.",
+                "operationId": "getBook",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the book",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Book details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Book"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Book not found"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/v3/books/{bookId}/rent": {
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Rent a book",
+                "description": "Rent a book to a client.",
+                "operationId": "rentBook",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "ID of the book to rent",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Client renting the book",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "client_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Book rented successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Book rented successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Book not found"
+                    },
+                    "409": {
+                        "description": "Book already rented"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/v3/books/{bookId}/return": {
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Return a rented book",
+                "description": "Return a book that was rented.",
+                "operationId": "returnBook",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "ID of the book to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Book returned successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Book returned successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Book not found"
+                    },
+                    "409": {
+                        "description": "Book is not currently rented"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/v3/clients": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Get a list of clients",
+                "operationId": "7a715c8d62cd4209458757d834933388",
+                "responses": {
+                    "200": {
+                        "description": "A list of clients",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Client"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Create a new client",
+                "operationId": "3e0553e4da254d9e1136d12881c9b271",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "description": "First name of the client",
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "description": "Last name of the client",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Client created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v3/clients/{id}": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Show details of a specific client",
+                "operationId": "f6e3b02d6560230093831a3e8f9d8449",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the client",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of the client",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Client not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Delete a client",
+                "operationId": "5dca4fc4afb99deb5de88328092ade59",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the client to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Client deleted successfully"
+                    },
+                    "404": {
+                        "description": "Client not found"
+                    },
+                    "400": {
+                        "description": "Client has rented books"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BookAlreadyRentedException": {
+                "title": "BookAlreadyRentedException",
+                "description": "Exception thrown when a book is already rented",
+                "required": [
+                    "message",
+                    "code"
+                ],
+                "properties": {
+                    "message": {
+                        "description": "Exception message",
+                        "type": "string"
+                    },
+                    "code": {
+                        "description": "HTTP status code",
+                        "type": "integer"
+                    },
+                    "status": {
+                        "description": "HTTP error status",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "BookNotRentedException": {
+                "title": "BookNotRentedException",
+                "description": "Exception thrown when attempting to return a book that is not currently rented",
+                "required": [
+                    "message",
+                    "code"
+                ],
+                "properties": {
+                    "message": {
+                        "description": "Exception message",
+                        "type": "string"
+                    },
+                    "code": {
+                        "description": "HTTP status code",
+                        "type": "integer"
+                    },
+                    "status": {
+                        "description": "HTTP error status",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Book": {
+                "title": "Book",
+                "description": "Book model",
+                "properties": {
+                    "id": {
+                        "description": "ID of the book",
+                        "type": "integer"
+                    },
+                    "title": {
+                        "description": "Title of the book",
+                        "type": "string"
+                    },
+                    "author": {
+                        "description": "Author of the book",
+                        "type": "string"
+                    },
+                    "year_of_publication": {
+                        "description": "Year the book was published",
+                        "type": "integer"
+                    },
+                    "publisher": {
+                        "description": "Publisher of the book",
+                        "type": "string"
+                    },
+                    "is_rented": {
+                        "description": "Indicates if the book is rented",
+                        "type": "boolean"
+                    },
+                    "rented_by": {
+                        "description": "ID of the client who rented the book",
+                        "type": "integer",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Client": {
+                "title": "Client",
+                "description": "Client model",
+                "properties": {
+                    "id": {
+                        "description": "ID of the client",
+                        "type": "integer"
+                    },
+                    "first_name": {
+                        "description": "First name of the client",
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "description": "Last name of the client",
+                        "type": "string"
+                    },
+                    "rentedBooks": {
+                        "description": "Books rented by the client",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Book"
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "csrf": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "X-CSRF-TOKEN",
+                "description": "CSRF token for protected requests"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Books",
+            "description": "Books"
+        },
+        {
+            "name": "Clients",
+            "description": "Clients"
+        }
+    ]
+}
