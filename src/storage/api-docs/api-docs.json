@@ -10,11 +10,11 @@
     },
     "servers": [
         {
-            "url": "http://localhost:8000",
+            "url": "http://laravel.library.api",
             "description": "Library API server"
         },
         {
-            "url": "http://localhost:8000/v3"
+            "url": "http://laravel.library.api/v3"
         }
     ],
     "paths": {
