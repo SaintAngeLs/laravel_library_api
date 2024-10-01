@@ -2,6 +2,9 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Exceptions\Core\Book\BookAlreadyRentedException;
+use App\Exceptions\Core\Book\BookNotFoundException;
+use App\Exceptions\Core\Book\BookNotRentedException;
 use App\Models\Book;
 use App\Repositories\BookRepositoryInterface;
 
@@ -39,27 +42,41 @@ class EloquentBookRepository implements BookRepositoryInterface
             });
         }
 
-        // Return paginated results
         return $query->paginate($perPage);
     }
 
-
     public function findBookById($id)
     {
-        return Book::with('client')->find($id);
+        $book = Book::with('client')->find($id);
+
+        if (!$book) {
+            throw new BookNotFoundException();
+        }
+
+        return $book;
     }
 
     public function rentBook($book, $clientId)
     {
+        if ($book->is_rented) {
+            throw new BookAlreadyRentedException();
+        }
+
         $book->is_rented = true;
         $book->rented_by = $clientId;
+
         return $book->save();
     }
 
     public function returnBook($book)
     {
+        if (!$book->is_rented) {
+            throw new BookNotRentedException();
+        }
+
         $book->is_rented = false;
         $book->rented_by = null;
+
         return $book->save();
     }
 }

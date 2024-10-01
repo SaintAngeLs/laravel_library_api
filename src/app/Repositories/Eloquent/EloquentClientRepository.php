@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Exceptions\Core\Client\ClientNotFoundException;
+use App\Exceptions\Core\Client\ClientHasRentedBooksException;
 use App\Models\Client;
 use App\Repositories\ClientRepositoryInterface;
 
@@ -14,7 +16,13 @@ class EloquentClientRepository implements ClientRepositoryInterface
 
     public function findClientById($id)
     {
-        return Client::with('rentedBooks')->findOrFail($id);
+        $client = Client::with('rentedBooks')->find($id);
+
+        if (!$client) {
+            throw new ClientNotFoundException();
+        }
+
+        return $client;
     }
 
     public function createClient(array $data)
@@ -24,10 +32,16 @@ class EloquentClientRepository implements ClientRepositoryInterface
 
     public function deleteClient($id)
     {
-        $client = Client::findOrFail($id);
-        if ($client->rentedBooks()->count() > 0) {
-            throw new \Exception("Client cannot be deleted as they have rented books.");
+        $client = Client::find($id);
+
+        if (!$client) {
+            throw new ClientNotFoundException();
         }
+
+        if ($client->rentedBooks()->count() > 0) {
+            throw new ClientHasRentedBooksException();
+        }
+
         return $client->delete();
     }
 }

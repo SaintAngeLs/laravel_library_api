@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Book;
 
+use App\Exceptions\Http\Book\BookNotFoundException;
+use App\Exceptions\Http\BookAlreadyRentedException;
 use App\Http\Controllers\Controller;
-use App\Models\Book;
 use App\Models\Client;
 use App\Services\Book\BookService;
 use Illuminate\Http\Request;
@@ -17,6 +18,9 @@ class BookViewController extends Controller
         $this->bookService = $bookService;
     }
 
+    /**
+     * Display the book listing page with filters.
+     */
     public function index(Request $request)
     {
         $filters = [
@@ -31,6 +35,9 @@ class BookViewController extends Controller
         return view('pages.book.index', compact('books', 'filters'));
     }
 
+    /**
+     * Search for books using filters and return JSON response.
+     */
     public function search(Request $request)
     {
         $filters = [
@@ -56,28 +63,53 @@ class BookViewController extends Controller
         ]);
     }
 
+    /**
+     * Show details of a specific book and handle the case where the book may not exist.
+     */
     public function show($id)
     {
-        $book = $this->bookService->getBookDetails($id);
+        try {
+            $book = $this->bookService->getBookDetails($id);
 
-        if (!$book->is_rented) {
-            $clients = Client::all();
-            return view('pages.book.show', compact('book', 'clients'));
+            if (!$book->is_rented) {
+                $clients = Client::all();
+                return view('pages.book.show', compact('book', 'clients'));
+            }
+
+            return view('pages.book.show', compact('book'));
+
+        } catch (BookNotFoundException $e) {
+            return redirect()->route('pages.book.index')->with('error', $e->getMessage());
         }
-
-        return view('pages.book.show', compact('book'));
     }
 
+    /**
+     * Rent a book to a client and handle errors related to book availability.
+     */
     public function rentBook($bookId, Request $request)
     {
         $clientId = $request->input('client_id');
-        $this->bookService->rentBook($bookId, $clientId);
-        return redirect()->route('pages.book.index')->with('success', 'Book rented successfully.');
+
+        try {
+            $this->bookService->rentBook($bookId, $clientId);
+            return redirect()->route('pages.book.index')->with('success', 'Book rented successfully.');
+        } catch (BookAlreadyRentedException $e) {
+            return redirect()->route('pages.book.index')->with('error', $e->getMessage());
+        } catch (BookNotFoundException $e) {
+            return redirect()->route('pages.book.index')->with('error', $e->getMessage());
+        }
     }
 
+    /**
+     * Return a rented book and handle errors such as book not found.
+     */
     public function returnBook($bookId)
     {
-        $this->bookService->returnBook($bookId);
-        return redirect()->route('pages.book.index')->with('success', 'Book returned successfully.');
+        try {
+            $this->bookService->returnBook($bookId);
+            return redirect()->route('pages.book.index')->with('success', 'Book returned successfully.');
+        } catch (BookNotFoundException $e) {
+            return redirect()->route('pages.book.index')->with('error', $e->getMessage());
+        }
     }
 }

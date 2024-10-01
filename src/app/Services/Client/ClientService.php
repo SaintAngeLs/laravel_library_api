@@ -2,6 +2,9 @@
 
 namespace App\Services\Client;
 
+use App\Dto\ClientDTO;
+use App\Exceptions\Core\Client\ClientNotFoundException;
+use App\Exceptions\Core\Client\ClientHasRentedBooksException;
 use App\Repositories\ClientRepositoryInterface;
 
 class ClientService
@@ -13,23 +16,43 @@ class ClientService
         $this->clientRepository = $clientRepository;
     }
 
-    public function listClients()
+    public function listClients(): mixed
     {
-        return $this->clientRepository->getAllClients();
+        $clients = $this->clientRepository->getAllClients();
+        return $clients->map(function ($client) {
+            return new ClientDTO($client);
+        });
     }
 
-    public function getClientDetails($id)
+    public function getClientDetails($id): ClientDTO
     {
-        return $this->clientRepository->findClientById($id);
+        $client = $this->clientRepository->findClientById($id);
+
+        if (!$client) {
+            throw new ClientNotFoundException();
+        }
+
+        return new ClientDTO($client);
     }
 
-    public function createClient($data)
+    public function createClient($data): ClientDTO
     {
-        return $this->clientRepository->createClient($data);
+        $client = $this->clientRepository->createClient($data);
+        return new ClientDTO($client);
     }
 
     public function deleteClient($id)
     {
+        $client = $this->clientRepository->findClientById($id);
+
+        if (!$client) {
+            throw new ClientNotFoundException();
+        }
+
+        if ($client->rentedBooks()->count() > 0) {
+            throw new ClientHasRentedBooksException();
+        }
+
         return $this->clientRepository->deleteClient($id);
     }
 }
