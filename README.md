@@ -139,22 +139,289 @@ Make sure the environment variable `L5_SWAGGER_CONST_HOST` is correctly set in y
 
 ## Routes
 
-### API Routes
+Endpoints of public api are listed, also, some **curl** requests are shown in the 'book_api_v3.rest' at the root of repository.
 
-The API exposes the following routes:
+### **Base URL**
+```
+/v3
+```
 
-- **Books**:
-  - `GET /v3/books` - Retrieve all books
-  - `GET /v3/books/{id}` - Get a specific book by ID
-  - `POST /v3/books/{bookId}/rent` - Rent a book
-  - `POST /v3/books/{bookId}/return` - Return a rented book
+### **Authentication**
+Currently, no authentication is required for this API.
 
-- **Clients**:
-  - `GET /v3/clients` - Retrieve all clients
-  - `GET /v3/clients/{id}` - Get a specific client by ID
-  - `POST /v3/clients` - Add a new client
-  - `DELETE /v3/clients/{id}` - Delete a client
+---
 
+### **Books Endpoints**
+
+#### 1. **List All Books**
+Retrieves a paginated list of books in the system.
+
+```
+GET /v3/books
+```
+- **Response (200)**
+  - A list of books with pagination details.
+  
+- **Example Response:**
+```json
+[
+  {
+    "id": 1,
+    "title": "Book Title 1",
+    "author": "Author 1",
+    "publisher": "Publisher 1",
+    "year_of_publication": 2020,
+    "is_rented": false,
+    "rented_by": null
+  },
+  ...
+]
+```
+
+#### 2. **Search Books**
+Search for books by title, author, or publisher.
+
+```
+GET /v3/books/search?title={title}&author={author}&publisher={publisher}
+```
+- **Parameters**:
+  - `title` (optional) — Filter by book title
+  - `author` (optional) — Filter by book author
+  - `publisher` (optional) — Filter by book publisher
+  
+- **Response (200)**
+  - List of matching books.
+  
+- **Example Response:**
+```json
+[
+  {
+    "id": 2,
+    "title": "Search Result Book",
+    "author": "Author Name",
+    "publisher": "Publisher Name",
+    "year_of_publication": 2021,
+    "is_rented": false,
+    "rented_by": null
+  }
+]
+```
+
+#### 3. **Get Book Details**
+Retrieve details of a specific book by its ID.
+
+```
+GET /v3/books/{id}
+```
+- **Parameters**:
+  - `id` (required) — The ID of the book.
+
+- **Response (200)**
+  - Details of the requested book.
+  
+- **Response (404)**
+  - Book not found.
+
+- **Example Response:**
+```json
+{
+  "id": 1,
+  "title": "Book Title",
+  "author": "Author Name",
+  "publisher": "Publisher Name",
+  "year_of_publication": 2021,
+  "is_rented": false,
+  "rented_by": null
+}
+```
+
+#### 4. **Rent a Book**
+Rent a book for a client by providing the client ID.
+
+```
+POST /v3/books/{bookId}/rent
+```
+- **Parameters**:
+  - `bookId` (required) — The ID of the book to rent.
+
+- **Request Body:**
+```json
+{
+  "client_id": 1
+}
+```
+
+- **Response (200)**:
+  - Confirmation that the book was rented.
+  
+- **Response (404)**:
+  - Book or client not found.
+  
+- **Response (409)**:
+  - Book is already rented.
+  
+- **Example Response:**
+```json
+{
+  "message": "Book rented successfully."
+}
+```
+
+#### 5. **Return a Book**
+Return a rented book.
+
+```
+POST /v3/books/{bookId}/return
+```
+- **Parameters**:
+  - `bookId` (required) — The ID of the book to return.
+
+- **Response (200)**:
+  - Confirmation that the book was returned.
+  
+- **Response (404)**:
+  - Book not found.
+  
+- **Response (409)**:
+  - Book was not rented.
+  
+- **Example Response:**
+```json
+{
+  "message": "Book returned successfully."
+}
+```
+
+---
+
+### **Clients Endpoints**
+
+#### 1. **List All Clients**
+Retrieve a list of all clients.
+
+```
+GET /v3/clients
+```
+
+- **Response (200)**:
+  - A list of clients, each including their details and rented books.
+  
+- **Example Response:**
+```json
+[
+  {
+    "id": 1,
+    "first_name": "John",
+    "last_name": "Doe",
+    "rentedBooks": [
+      {
+        "id": 1,
+        "title": "Book Title",
+        "author": "Author Name"
+      }
+    ]
+  }
+]
+```
+
+#### 2. **Get Client Details**
+Retrieve details of a specific client by their ID.
+
+```
+GET /v3/clients/{id}
+```
+- **Parameters**:
+  - `id` (required) — The ID of the client.
+
+- **Response (200)**:
+  - Details of the requested client.
+  
+- **Response (404)**:
+  - Client not found.
+
+- **Example Response:**
+```json
+{
+  "id": 1,
+  "first_name": "John",
+  "last_name": "Doe",
+  "rentedBooks": [
+    {
+      "id": 1,
+      "title": "Book Title",
+      "author": "Author Name"
+    }
+  ]
+}
+```
+
+#### 3. **Create a New Client**
+Add a new client to the system.
+
+```
+POST /v3/clients
+```
+- **Request Body:**
+```json
+{
+  "first_name": "John",
+  "last_name": "Doe"
+}
+```
+
+- **Response (201)**:
+  - The newly created client.
+
+- **Example Response:**
+```json
+{
+  "id": 2,
+  "first_name": "John",
+  "last_name": "Doe",
+  "rentedBooks": []
+}
+```
+
+#### 4. **Delete a Client**
+Delete a client by their ID. If the client has rented books, they cannot be deleted.
+
+```
+DELETE /v3/clients/{id}
+```
+- **Parameters**:
+  - `id` (required) — The ID of the client.
+
+- **Response (200)**:
+  - Confirmation that the client was deleted.
+
+- **Response (404)**:
+  - Client not found.
+  
+- **Response (400)**:
+  - Client has rented books and cannot be deleted.
+
+- **Example Response:**
+```json
+{
+  "message": "Client deleted successfully."
+}
+```
+
+---
+
+### **Error Codes**
+
+- **404 Not Found**: The requested resource (book or client) was not found.
+- **400 Bad Request**: The client has rented books and cannot be deleted.
+- **409 Conflict**: Book is already rented or cannot be returned because it was not rented.
+- **500 Internal Server Error**: Server error occurred.
+
+---
+
+### **Swagger Integration**
+
+You can access the API documentation in a user-friendly UI by visiting the Swagger UI at `/api/documentation`. The Swagger UI provides the ability to interact with the API directly from the browser.
+----
 ### Web Routes for MVC
 
 - **Books Pages**:

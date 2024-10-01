@@ -1,0 +1,2893 @@
+# List all books (GET)
+curl -X 'GET' \
+  'http://localhost:8000/v3/books' \
+  -H 'accept: application/json' \
+  -H 'X-CSRF-TOKEN: VB6s9Y4vjE0M7oiGz0Q3qAkc10GTJQxkgQA7uJqu'
+
+[
+  {
+    "id": 1,
+    "title": "book_title_1",
+    "author": "book_author_1",
+    "year_of_publication": 1901,
+    "publisher": "Random Publisher 1",
+    "is_rented": false,
+    "client": null
+  },
+  {
+    "id": 2,
+    "title": "book_title_2",
+    "author": "book_author_2",
+    "year_of_publication": 1902,
+    "publisher": "Random Publisher 2",
+    "is_rented": false,
+    "client": null
+  },
+  {
+    "id": 3,
+    "title": "book_title_3",
+    "author": "book_author_3",
+    "year_of_publication": 1903,
+    "publisher": "Random Publisher 3",
+    "is_rented": false,
+    "client": null
+  },
+  {
+    "id": 4,
+    "title": "book_title_4",
+    "author": "book_author_4",
+    "year_of_publication": 1904,
+    "publisher": "Random Publisher 4",
+    "is_rented": true,
+    "client": {
+      "id": 2,
+      "first_name": "TESTESTSETSETSET",
+      "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+      "rentedBooks": [
+        {
+          "id": 4,
+          "title": "book_title_4",
+          "author": "book_author_4"
+        },
+        {
+          "id": 6,
+          "title": "book_title_6",
+          "author": "book_author_6"
+        },
+        {
+          "id": 9,
+          "title": "book_title_9",
+          "author": "book_author_9"
+        },
+        {
+          "id": 11,
+          "title": "book_title_11",
+          "author": "book_author_11"
+        },
+        {
+          "id": 12,
+          "title": "book_title_12",
+          "author": "book_author_12"
+        },
+        {
+          "id": 13,
+          "title": "book_title_13",
+          "author": "book_author_13"
+        },
+        {
+          "id": 14,
+          "title": "book_title_14",
+          "author": "book_author_14"
+        },
+        {
+          "id": 15,
+          "title": "book_title_15",
+          "author": "book_author_15"
+        },
+        {
+          "id": 16,
+          "title": "book_title_16",
+          "author": "book_author_16"
+        },
+        {
+          "id": 17,
+          "title": "book_title_17",
+          "author": "book_author_17"
+        },
+        {
+          "id": 18,
+          "title": "book_title_18",
+          "author": "book_author_18"
+        },
+        {
+          "id": 19,
+          "title": "book_title_19",
+          "author": "book_author_19"
+        },
+        {
+          "id": 20,
+          "title": "book_title_20",
+          "author": "book_author_20"
+        },
+        {
+          "id": 21,
+          "title": "book_title_21",
+          "author": "book_author_21"
+        },
+        {
+          "id": 22,
+          "title": "book_title_22",
+          "author": "book_author_22"
+        },
+        {
+          "id": 24,
+          "title": "book_title_24",
+          "author": "book_author_24"
+        },
+        {
+          "id": 25,
+          "title": "book_title_25",
+          "author": "book_author_25"
+        },
+        {
+          "id": 49,
+          "title": "book_title_49",
+          "author": "book_author_49"
+        },
+        {
+          "id": 50,
+          "title": "book_title_50",
+          "author": "book_author_50"
+        }
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "title": "book_title_5",
+    "author": "book_author_5",
+    "year_of_publication": 1905,
+    "publisher": "Random Publisher 5",
+    "is_rented": false,
+    "client": null
+  },
+  {
+    "id": 6,
+    "title": "book_title_6",
+    "author": "book_author_6",
+    "year_of_publication": 1906,
+    "publisher": "Random Publisher 6",
+    "is_rented": true,
+    "client": {
+      "id": 2,
+      "first_name": "TESTESTSETSETSET",
+      "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+      "rentedBooks": [
+        {
+          "id": 4,
+          "title": "book_title_4",
+          "author": "book_author_4"
+        },
+        {
+          "id": 6,
+          "title": "book_title_6",
+          "author": "book_author_6"
+        },
+        {
+          "id": 9,
+          "title": "book_title_9",
+          "author": "book_author_9"
+        },
+        {
+          "id": 11,
+          "title": "book_title_11",
+          "author": "book_author_11"
+        },
+        {
+          "id": 12,
+          "title": "book_title_12",
+          "author": "book_author_12"
+        },
+        {
+          "id": 13,
+          "title": "book_title_13",
+          "author": "book_author_13"
+        },
+        {
+          "id": 14,
+          "title": "book_title_14",
+          "author": "book_author_14"
+        },
+        {
+          "id": 15,
+          "title": "book_title_15",
+          "author": "book_author_15"
+        },
+        {
+          "id": 16,
+          "title": "book_title_16",
+          "author": "book_author_16"
+        },
+        {
+          "id": 17,
+          "title": "book_title_17",
+          "author": "book_author_17"
+        },
+        {
+          "id": 18,
+          "title": "book_title_18",
+          "author": "book_author_18"
+        },
+        {
+          "id": 19,
+          "title": "book_title_19",
+          "author": "book_author_19"
+        },
+        {
+          "id": 20,
+          "title": "book_title_20",
+          "author": "book_author_20"
+        },
+        {
+          "id": 21,
+          "title": "book_title_21",
+          "author": "book_author_21"
+        },
+        {
+          "id": 22,
+          "title": "book_title_22",
+          "author": "book_author_22"
+        },
+        {
+          "id": 24,
+          "title": "book_title_24",
+          "author": "book_author_24"
+        },
+        {
+          "id": 25,
+          "title": "book_title_25",
+          "author": "book_author_25"
+        },
+        {
+          "id": 49,
+          "title": "book_title_49",
+          "author": "book_author_49"
+        },
+        {
+          "id": 50,
+          "title": "book_title_50",
+          "author": "book_author_50"
+        }
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "title": "book_title_7",
+    "author": "book_author_7",
+    "year_of_publication": 1907,
+    "publisher": "Random Publisher 7",
+    "is_rented": true,
+    "client": {
+      "id": 4,
+      "first_name": "ESTSETSETSETES=ESTSETSEtSEtSET",
+      "last_name": "DGL'KDMJGLK;JDSFZJNG;KDRJHN SALERKGFJNDAL;KGJ SDFL;KJG O;DLRSJ",
+      "rentedBooks": [
+        {
+          "id": 7,
+          "title": "book_title_7",
+          "author": "book_author_7"
+        }
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "title": "book_title_8",
+    "author": "book_author_8",
+    "year_of_publication": 1908,
+    "publisher": "Random Publisher 8",
+    "is_rented": true,
+    "client": {
+      "id": 3,
+      "first_name": "TESTSETEST_TESTSETSET",
+      "last_name": "ETSETSETSETSET-ETSETSETSETSETSETSE-ETSETSETSETSETSE",
+      "rentedBooks": [
+        {
+          "id": 8,
+          "title": "book_title_8",
+          "author": "book_author_8"
+        },
+        {
+          "id": 10,
+          "title": "book_title_10",
+          "author": "book_author_10"
+        },
+        {
+          "id": 46,
+          "title": "book_title_46",
+          "author": "book_author_46"
+        }
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "title": "book_title_9",
+    "author": "book_author_9",
+    "year_of_publication": 1909,
+    "publisher": "Random Publisher 9",
+    "is_rented": true,
+    "client": {
+      "id": 2,
+      "first_name": "TESTESTSETSETSET",
+      "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+      "rentedBooks": [
+        {
+          "id": 4,
+          "title": "book_title_4",
+          "author": "book_author_4"
+        },
+        {
+          "id": 6,
+          "title": "book_title_6",
+          "author": "book_author_6"
+        },
+        {
+          "id": 9,
+          "title": "book_title_9",
+          "author": "book_author_9"
+        },
+        {
+          "id": 11,
+          "title": "book_title_11",
+          "author": "book_author_11"
+        },
+        {
+          "id": 12,
+          "title": "book_title_12",
+          "author": "book_author_12"
+        },
+        {
+          "id": 13,
+          "title": "book_title_13",
+          "author": "book_author_13"
+        },
+        {
+          "id": 14,
+          "title": "book_title_14",
+          "author": "book_author_14"
+        },
+        {
+          "id": 15,
+          "title": "book_title_15",
+          "author": "book_author_15"
+        },
+        {
+          "id": 16,
+          "title": "book_title_16",
+          "author": "book_author_16"
+        },
+        {
+          "id": 17,
+          "title": "book_title_17",
+          "author": "book_author_17"
+        },
+        {
+          "id": 18,
+          "title": "book_title_18",
+          "author": "book_author_18"
+        },
+        {
+          "id": 19,
+          "title": "book_title_19",
+          "author": "book_author_19"
+        },
+        {
+          "id": 20,
+          "title": "book_title_20",
+          "author": "book_author_20"
+        },
+        {
+          "id": 21,
+          "title": "book_title_21",
+          "author": "book_author_21"
+        },
+        {
+          "id": 22,
+          "title": "book_title_22",
+          "author": "book_author_22"
+        },
+        {
+          "id": 24,
+          "title": "book_title_24",
+          "author": "book_author_24"
+        },
+        {
+          "id": 25,
+          "title": "book_title_25",
+          "author": "book_author_25"
+        },
+        {
+          "id": 49,
+          "title": "book_title_49",
+          "author": "book_author_49"
+        },
+        {
+          "id": 50,
+          "title": "book_title_50",
+          "author": "book_author_50"
+        }
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "title": "book_title_10",
+    "author": "book_author_10",
+    "year_of_publication": 1910,
+    "publisher": "Random Publisher 10",
+    "is_rented": true,
+    "client": {
+      "id": 3,
+      "first_name": "TESTSETEST_TESTSETSET",
+      "last_name": "ETSETSETSETSET-ETSETSETSETSETSETSE-ETSETSETSETSETSE",
+      "rentedBooks": [
+        {
+          "id": 8,
+          "title": "book_title_8",
+          "author": "book_author_8"
+        },
+        {
+          "id": 10,
+          "title": "book_title_10",
+          "author": "book_author_10"
+        },
+        {
+          "id": 46,
+          "title": "book_title_46",
+          "author": "book_author_46"
+        }
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "title": "book_title_11",
+    "author": "book_author_11",
+    "year_of_publication": 1911,
+    "publisher": "Random Publisher 11",
+    "is_rented": true,
+    "client": {
+      "id": 2,
+      "first_name": "TESTESTSETSETSET",
+      "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+      "rentedBooks": [
+        {
+          "id": 4,
+          "title": "book_title_4",
+          "author": "book_author_4"
+        },
+        {
+          "id": 6,
+          "title": "book_title_6",
+          "author": "book_author_6"
+        },
+        {
+          "id": 9,
+          "title": "book_title_9",
+          "author": "book_author_9"
+        },
+        {
+          "id": 11,
+          "title": "book_title_11",
+          "author": "book_author_11"
+        },
+        {
+          "id": 12,
+          "title": "book_title_12",
+          "author": "book_author_12"
+        },
+        {
+          "id": 13,
+          "title": "book_title_13",
+          "author": "book_author_13"
+        },
+        {
+          "id": 14,
+          "title": "book_title_14",
+          "author": "book_author_14"
+        },
+        {
+          "id": 15,
+          "title": "book_title_15",
+          "author": "book_author_15"
+        },
+        {
+          "id": 16,
+          "title": "book_title_16",
+          "author": "book_author_16"
+        },
+        {
+          "id": 17,
+          "title": "book_title_17",
+          "author": "book_author_17"
+        },
+        {
+          "id": 18,
+          "title": "book_title_18",
+          "author": "book_author_18"
+        },
+        {
+          "id": 19,
+          "title": "book_title_19",
+          "author": "book_author_19"
+        },
+        {
+          "id": 20,
+          "title": "book_title_20",
+          "author": "book_author_20"
+        },
+        {
+          "id": 21,
+          "title": "book_title_21",
+          "author": "book_author_21"
+        },
+        {
+          "id": 22,
+          "title": "book_title_22",
+          "author": "book_author_22"
+        },
+        {
+          "id": 24,
+          "title": "book_title_24",
+          "author": "book_author_24"
+        },
+        {
+          "id": 25,
+          "title": "book_title_25",
+          "author": "book_author_25"
+        },
+        {
+          "id": 49,
+          "title": "book_title_49",
+          "author": "book_author_49"
+        },
+        {
+          "id": 50,
+          "title": "book_title_50",
+          "author": "book_author_50"
+        }
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "title": "book_title_12",
+    "author": "book_author_12",
+    "year_of_publication": 1912,
+    "publisher": "Random Publisher 12",
+    "is_rented": true,
+    "client": {
+      "id": 2,
+      "first_name": "TESTESTSETSETSET",
+      "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+      "rentedBooks": [
+        {
+          "id": 4,
+          "title": "book_title_4",
+          "author": "book_author_4"
+        },
+        {
+          "id": 6,
+          "title": "book_title_6",
+          "author": "book_author_6"
+        },
+        {
+          "id": 9,
+          "title": "book_title_9",
+          "author": "book_author_9"
+        },
+        {
+          "id": 11,
+          "title": "book_title_11",
+          "author": "book_author_11"
+        },
+        {
+          "id": 12,
+          "title": "book_title_12",
+          "author": "book_author_12"
+        },
+        {
+          "id": 13,
+          "title": "book_title_13",
+          "author": "book_author_13"
+        },
+        {
+          "id": 14,
+          "title": "book_title_14",
+          "author": "book_author_14"
+        },
+        {
+          "id": 15,
+          "title": "book_title_15",
+          "author": "book_author_15"
+        },
+        {
+          "id": 16,
+          "title": "book_title_16",
+          "author": "book_author_16"
+        },
+        {
+          "id": 17,
+          "title": "book_title_17",
+          "author": "book_author_17"
+        },
+        {
+          "id": 18,
+          "title": "book_title_18",
+          "author": "book_author_18"
+        },
+        {
+          "id": 19,
+          "title": "book_title_19",
+          "author": "book_author_19"
+        },
+        {
+          "id": 20,
+          "title": "book_title_20",
+          "author": "book_author_20"
+        },
+        {
+          "id": 21,
+          "title": "book_title_21",
+          "author": "book_author_21"
+        },
+        {
+          "id": 22,
+          "title": "book_title_22",
+          "author": "book_author_22"
+        },
+        {
+          "id": 24,
+          "title": "book_title_24",
+          "author": "book_author_24"
+        },
+        {
+          "id": 25,
+          "title": "book_title_25",
+          "author": "book_author_25"
+        },
+        {
+          "id": 49,
+          "title": "book_title_49",
+          "author": "book_author_49"
+        },
+        {
+          "id": 50,
+          "title": "book_title_50",
+          "author": "book_author_50"
+        }
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "title": "book_title_13",
+    "author": "book_author_13",
+    "year_of_publication": 1913,
+    "publisher": "Random Publisher 13",
+    "is_rented": true,
+    "client": {
+      "id": 2,
+      "first_name": "TESTESTSETSETSET",
+      "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+      "rentedBooks": [
+        {
+          "id": 4,
+          "title": "book_title_4",
+          "author": "book_author_4"
+        },
+        {
+          "id": 6,
+          "title": "book_title_6",
+          "author": "book_author_6"
+        },
+        {
+          "id": 9,
+          "title": "book_title_9",
+          "author": "book_author_9"
+        },
+        {
+          "id": 11,
+          "title": "book_title_11",
+          "author": "book_author_11"
+        },
+        {
+          "id": 12,
+          "title": "book_title_12",
+          "author": "book_author_12"
+        },
+        {
+          "id": 13,
+          "title": "book_title_13",
+          "author": "book_author_13"
+        },
+        {
+          "id": 14,
+          "title": "book_title_14",
+          "author": "book_author_14"
+        },
+        {
+          "id": 15,
+          "title": "book_title_15",
+          "author": "book_author_15"
+        },
+        {
+          "id": 16,
+          "title": "book_title_16",
+          "author": "book_author_16"
+        },
+        {
+          "id": 17,
+          "title": "book_title_17",
+          "author": "book_author_17"
+        },
+        {
+          "id": 18,
+          "title": "book_title_18",
+          "author": "book_author_18"
+        },
+        {
+          "id": 19,
+          "title": "book_title_19",
+          "author": "book_author_19"
+        },
+        {
+          "id": 20,
+          "title": "book_title_20",
+          "author": "book_author_20"
+        },
+        {
+          "id": 21,
+          "title": "book_title_21",
+          "author": "book_author_21"
+        },
+        {
+          "id": 22,
+          "title": "book_title_22",
+          "author": "book_author_22"
+        },
+        {
+          "id": 24,
+          "title": "book_title_24",
+          "author": "book_author_24"
+        },
+        {
+          "id": 25,
+          "title": "book_title_25",
+          "author": "book_author_25"
+        },
+        {
+          "id": 49,
+          "title": "book_title_49",
+          "author": "book_author_49"
+        },
+        {
+          "id": 50,
+          "title": "book_title_50",
+          "author": "book_author_50"
+        }
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "title": "book_title_14",
+    "author": "book_author_14",
+    "year_of_publication": 1914,
+    "publisher": "Random Publisher 14",
+    "is_rented": true,
+    "client": {
+      "id": 2,
+      "first_name": "TESTESTSETSETSET",
+      "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+      "rentedBooks": [
+        {
+          "id": 4,
+          "title": "book_title_4",
+          "author": "book_author_4"
+        },
+        {
+          "id": 6,
+          "title": "book_title_6",
+          "author": "book_author_6"
+        },
+        {
+          "id": 9,
+          "title": "book_title_9",
+          "author": "book_author_9"
+        },
+        {
+          "id": 11,
+          "title": "book_title_11",
+          "author": "book_author_11"
+        },
+        {
+          "id": 12,
+          "title": "book_title_12",
+          "author": "book_author_12"
+        },
+        {
+          "id": 13,
+          "title": "book_title_13",
+          "author": "book_author_13"
+        },
+        {
+          "id": 14,
+          "title": "book_title_14",
+          "author": "book_author_14"
+        },
+        {
+          "id": 15,
+          "title": "book_title_15",
+          "author": "book_author_15"
+        },
+        {
+          "id": 16,
+          "title": "book_title_16",
+          "author": "book_author_16"
+        },
+        {
+          "id": 17,
+          "title": "book_title_17",
+          "author": "book_author_17"
+        },
+        {
+          "id": 18,
+          "title": "book_title_18",
+          "author": "book_author_18"
+        },
+        {
+          "id": 19,
+          "title": "book_title_19",
+          "author": "book_author_19"
+        },
+        {
+          "id": 20,
+          "title": "book_title_20",
+          "author": "book_author_20"
+        },
+        {
+          "id": 21,
+          "title": "book_title_21",
+          "author": "book_author_21"
+        },
+        {
+          "id": 22,
+          "title": "book_title_22",
+          "author": "book_author_22"
+        },
+        {
+          "id": 24,
+          "title": "book_title_24",
+          "author": "book_author_24"
+        },
+        {
+          "id": 25,
+          "title": "book_title_25",
+          "author": "book_author_25"
+        },
+        {
+          "id": 49,
+          "title": "book_title_49",
+          "author": "book_author_49"
+        },
+        {
+          "id": 50,
+          "title": "book_title_50",
+          "author": "book_author_50"
+        }
+      ]
+    }
+  },
+  {
+    "id": 15,
+    "title": "book_title_15",
+    "author": "book_author_15",
+    "year_of_publication": 1915,
+    "publisher": "Random Publisher 15",
+    "is_rented": true,
+    "client": {
+      "id": 2,
+      "first_name": "TESTESTSETSETSET",
+      "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+      "rentedBooks": [
+        {
+          "id": 4,
+          "title": "book_title_4",
+          "author": "book_author_4"
+        },
+        {
+          "id": 6,
+          "title": "book_title_6",
+          "author": "book_author_6"
+        },
+        {
+          "id": 9,
+          "title": "book_title_9",
+          "author": "book_author_9"
+        },
+        {
+          "id": 11,
+          "title": "book_title_11",
+          "author": "book_author_11"
+        },
+        {
+          "id": 12,
+          "title": "book_title_12",
+          "author": "book_author_12"
+        },
+        {
+          "id": 13,
+          "title": "book_title_13",
+          "author": "book_author_13"
+        },
+        {
+          "id": 14,
+          "title": "book_title_14",
+          "author": "book_author_14"
+        },
+        {
+          "id": 15,
+          "title": "book_title_15",
+          "author": "book_author_15"
+        },
+        {
+          "id": 16,
+          "title": "book_title_16",
+          "author": "book_author_16"
+        },
+        {
+          "id": 17,
+          "title": "book_title_17",
+          "author": "book_author_17"
+        },
+        {
+          "id": 18,
+          "title": "book_title_18",
+          "author": "book_author_18"
+        },
+        {
+          "id": 19,
+          "title": "book_title_19",
+          "author": "book_author_19"
+        },
+        {
+          "id": 20,
+          "title": "book_title_20",
+          "author": "book_author_20"
+        },
+        {
+          "id": 21,
+          "title": "book_title_21",
+          "author": "book_author_21"
+        },
+        {
+          "id": 22,
+          "title": "book_title_22",
+          "author": "book_author_22"
+        },
+        {
+          "id": 24,
+          "title": "book_title_24",
+          "author": "book_author_24"
+        },
+        {
+          "id": 25,
+          "title": "book_title_25",
+          "author": "book_author_25"
+        },
+        {
+          "id": 49,
+          "title": "book_title_49",
+          "author": "book_author_49"
+        },
+        {
+          "id": 50,
+          "title": "book_title_50",
+          "author": "book_author_50"
+        }
+      ]
+    }
+  },
+  {
+    "id": 16,
+    "title": "book_title_16",
+    "author": "book_author_16",
+    "year_of_publication": 1916,
+    "publisher": "Random Publisher 16",
+    "is_rented": true,
+    "client": {
+      "id": 2,
+      "first_name": "TESTESTSETSETSET",
+      "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+      "rentedBooks": [
+        {
+          "id": 4,
+          "title": "book_title_4",
+          "author": "book_author_4"
+        },
+        {
+          "id": 6,
+          "title": "book_title_6",
+          "author": "book_author_6"
+        },
+        {
+          "id": 9,
+          "title": "book_title_9",
+          "author": "book_author_9"
+        },
+        {
+          "id": 11,
+          "title": "book_title_11",
+          "author": "book_author_11"
+        },
+        {
+          "id": 12,
+          "title": "book_title_12",
+          "author": "book_author_12"
+        },
+        {
+          "id": 13,
+          "title": "book_title_13",
+          "author": "book_author_13"
+        },
+        {
+          "id": 14,
+          "title": "book_title_14",
+          "author": "book_author_14"
+        },
+        {
+          "id": 15,
+          "title": "book_title_15",
+          "author": "book_author_15"
+        },
+        {
+          "id": 16,
+          "title": "book_title_16",
+          "author": "book_author_16"
+        },
+        {
+          "id": 17,
+          "title": "book_title_17",
+          "author": "book_author_17"
+        },
+        {
+          "id": 18,
+          "title": "book_title_18",
+          "author": "book_author_18"
+        },
+        {
+          "id": 19,
+          "title": "book_title_19",
+          "author": "book_author_19"
+        },
+        {
+          "id": 20,
+          "title": "book_title_20",
+          "author": "book_author_20"
+        },
+        {
+          "id": 21,
+          "title": "book_title_21",
+          "author": "book_author_21"
+        },
+        {
+          "id": 22,
+          "title": "book_title_22",
+          "author": "book_author_22"
+        },
+        {
+          "id": 24,
+          "title": "book_title_24",
+          "author": "book_author_24"
+        },
+        {
+          "id": 25,
+          "title": "book_title_25",
+          "author": "book_author_25"
+        },
+        {
+          "id": 49,
+          "title": "book_title_49",
+          "author": "book_author_49"
+        },
+        {
+          "id": 50,
+          "title": "book_title_50",
+          "author": "book_author_50"
+        }
+      ]
+    }
+  },
+  {
+    "id": 17,
+    "title": "book_title_17",
+    "author": "book_author_17",
+    "year_of_publication": 1917,
+    "publisher": "Random Publisher 17",
+    "is_rented": true,
+    "client": {
+      "id": 2,
+      "first_name": "TESTESTSETSETSET",
+      "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+      "rentedBooks": [
+        {
+          "id": 4,
+          "title": "book_title_4",
+          "author": "book_author_4"
+        },
+        {
+          "id": 6,
+          "title": "book_title_6",
+          "author": "book_author_6"
+        },
+        {
+          "id": 9,
+          "title": "book_title_9",
+          "author": "book_author_9"
+        },
+        {
+          "id": 11,
+          "title": "book_title_11",
+          "author": "book_author_11"
+        },
+        {
+          "id": 12,
+          "title": "book_title_12",
+          "author": "book_author_12"
+        },
+        {
+          "id": 13,
+          "title": "book_title_13",
+          "author": "book_author_13"
+        },
+        {
+          "id": 14,
+          "title": "book_title_14",
+          "author": "book_author_14"
+        },
+        {
+          "id": 15,
+          "title": "book_title_15",
+          "author": "book_author_15"
+        },
+        {
+          "id": 16,
+          "title": "book_title_16",
+          "author": "book_author_16"
+        },
+        {
+          "id": 17,
+          "title": "book_title_17",
+          "author": "book_author_17"
+        },
+        {
+          "id": 18,
+          "title": "book_title_18",
+          "author": "book_author_18"
+        },
+        {
+          "id": 19,
+          "title": "book_title_19",
+          "author": "book_author_19"
+        },
+        {
+          "id": 20,
+          "title": "book_title_20",
+          "author": "book_author_20"
+        },
+        {
+          "id": 21,
+          "title": "book_title_21",
+          "author": "book_author_21"
+        },
+        {
+          "id": 22,
+          "title": "book_title_22",
+          "author": "book_author_22"
+        },
+        {
+          "id": 24,
+          "title": "book_title_24",
+          "author": "book_author_24"
+        },
+        {
+          "id": 25,
+          "title": "book_title_25",
+          "author": "book_author_25"
+        },
+        {
+          "id": 49,
+          "title": "book_title_49",
+          "author": "book_author_49"
+        },
+        {
+          "id": 50,
+          "title": "book_title_50",
+          "author": "book_author_50"
+        }
+      ]
+    }
+  },
+  {
+    "id": 18,
+    "title": "book_title_18",
+    "author": "book_author_18",
+    "year_of_publication": 1918,
+    "publisher": "Random Publisher 18",
+    "is_rented": true,
+    "client": {
+      "id": 2,
+      "first_name": "TESTESTSETSETSET",
+      "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+      "rentedBooks": [
+        {
+          "id": 4,
+          "title": "book_title_4",
+          "author": "book_author_4"
+        },
+        {
+          "id": 6,
+          "title": "book_title_6",
+          "author": "book_author_6"
+        },
+        {
+          "id": 9,
+          "title": "book_title_9",
+          "author": "book_author_9"
+        },
+        {
+          "id": 11,
+          "title": "book_title_11",
+          "author": "book_author_11"
+        },
+        {
+          "id": 12,
+          "title": "book_title_12",
+          "author": "book_author_12"
+        },
+        {
+          "id": 13,
+          "title": "book_title_13",
+          "author": "book_author_13"
+        },
+        {
+          "id": 14,
+          "title": "book_title_14",
+          "author": "book_author_14"
+        },
+        {
+          "id": 15,
+          "title": "book_title_15",
+          "author": "book_author_15"
+        },
+        {
+          "id": 16,
+          "title": "book_title_16",
+          "author": "book_author_16"
+        },
+        {
+          "id": 17,
+          "title": "book_title_17",
+          "author": "book_author_17"
+        },
+        {
+          "id": 18,
+          "title": "book_title_18",
+          "author": "book_author_18"
+        },
+        {
+          "id": 19,
+          "title": "book_title_19",
+          "author": "book_author_19"
+        },
+        {
+          "id": 20,
+          "title": "book_title_20",
+          "author": "book_author_20"
+        },
+        {
+          "id": 21,
+          "title": "book_title_21",
+          "author": "book_author_21"
+        },
+        {
+          "id": 22,
+          "title": "book_title_22",
+          "author": "book_author_22"
+        },
+        {
+          "id": 24,
+          "title": "book_title_24",
+          "author": "book_author_24"
+        },
+        {
+          "id": 25,
+          "title": "book_title_25",
+          "author": "book_author_25"
+        },
+        {
+          "id": 49,
+          "title": "book_title_49",
+          "author": "book_author_49"
+        },
+        {
+          "id": 50,
+          "title": "book_title_50",
+          "author": "book_author_50"
+        }
+      ]
+    }
+  },
+  {
+    "id": 19,
+    "title": "book_title_19",
+    "author": "book_author_19",
+    "year_of_publication": 1919,
+    "publisher": "Random Publisher 19",
+    "is_rented": true,
+    "client": {
+      "id": 2,
+      "first_name": "TESTESTSETSETSET",
+      "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+      "rentedBooks": [
+        {
+          "id": 4,
+          "title": "book_title_4",
+          "author": "book_author_4"
+        },
+        {
+          "id": 6,
+          "title": "book_title_6",
+          "author": "book_author_6"
+        },
+        {
+          "id": 9,
+          "title": "book_title_9",
+          "author": "book_author_9"
+        },
+        {
+          "id": 11,
+          "title": "book_title_11",
+          "author": "book_author_11"
+        },
+        {
+          "id": 12,
+          "title": "book_title_12",
+          "author": "book_author_12"
+        },
+        {
+          "id": 13,
+          "title": "book_title_13",
+          "author": "book_author_13"
+        },
+        {
+          "id": 14,
+          "title": "book_title_14",
+          "author": "book_author_14"
+        },
+        {
+          "id": 15,
+          "title": "book_title_15",
+          "author": "book_author_15"
+        },
+        {
+          "id": 16,
+          "title": "book_title_16",
+          "author": "book_author_16"
+        },
+        {
+          "id": 17,
+          "title": "book_title_17",
+          "author": "book_author_17"
+        },
+        {
+          "id": 18,
+          "title": "book_title_18",
+          "author": "book_author_18"
+        },
+        {
+          "id": 19,
+          "title": "book_title_19",
+          "author": "book_author_19"
+        },
+        {
+          "id": 20,
+          "title": "book_title_20",
+          "author": "book_author_20"
+        },
+        {
+          "id": 21,
+          "title": "book_title_21",
+          "author": "book_author_21"
+        },
+        {
+          "id": 22,
+          "title": "book_title_22",
+          "author": "book_author_22"
+        },
+        {
+          "id": 24,
+          "title": "book_title_24",
+          "author": "book_author_24"
+        },
+        {
+          "id": 25,
+          "title": "book_title_25",
+          "author": "book_author_25"
+        },
+        {
+          "id": 49,
+          "title": "book_title_49",
+          "author": "book_author_49"
+        },
+        {
+          "id": 50,
+          "title": "book_title_50",
+          "author": "book_author_50"
+        }
+      ]
+    }
+  },
+  {
+    "id": 20,
+    "title": "book_title_20",
+    "author": "book_author_20",
+    "year_of_publication": 1920,
+    "publisher": "Random Publisher 20",
+    "is_rented": true,
+    "client": {
+      "id": 2,
+      "first_name": "TESTESTSETSETSET",
+      "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+      "rentedBooks": [
+        {
+          "id": 4,
+          "title": "book_title_4",
+          "author": "book_author_4"
+        },
+        {
+          "id": 6,
+          "title": "book_title_6",
+          "author": "book_author_6"
+        },
+        {
+          "id": 9,
+          "title": "book_title_9",
+          "author": "book_author_9"
+        },
+        {
+          "id": 11,
+          "title": "book_title_11",
+          "author": "book_author_11"
+        },
+        {
+          "id": 12,
+          "title": "book_title_12",
+          "author": "book_author_12"
+        },
+        {
+          "id": 13,
+          "title": "book_title_13",
+          "author": "book_author_13"
+        },
+        {
+          "id": 14,
+          "title": "book_title_14",
+          "author": "book_author_14"
+        },
+        {
+          "id": 15,
+          "title": "book_title_15",
+          "author": "book_author_15"
+        },
+        {
+          "id": 16,
+          "title": "book_title_16",
+          "author": "book_author_16"
+        },
+        {
+          "id": 17,
+          "title": "book_title_17",
+          "author": "book_author_17"
+        },
+        {
+          "id": 18,
+          "title": "book_title_18",
+          "author": "book_author_18"
+        },
+        {
+          "id": 19,
+          "title": "book_title_19",
+          "author": "book_author_19"
+        },
+        {
+          "id": 20,
+          "title": "book_title_20",
+          "author": "book_author_20"
+        },
+        {
+          "id": 21,
+          "title": "book_title_21",
+          "author": "book_author_21"
+        },
+        {
+          "id": 22,
+          "title": "book_title_22",
+          "author": "book_author_22"
+        },
+        {
+          "id": 24,
+          "title": "book_title_24",
+          "author": "book_author_24"
+        },
+        {
+          "id": 25,
+          "title": "book_title_25",
+          "author": "book_author_25"
+        },
+        {
+          "id": 49,
+          "title": "book_title_49",
+          "author": "book_author_49"
+        },
+        {
+          "id": 50,
+          "title": "book_title_50",
+          "author": "book_author_50"
+        }
+      ]
+    }
+  }
+]
+###
+
+# Search books (GET)
+curl -X 'GET' \
+  'http://localhost:8000/v3/books/search?title=book_title_1&author=book_author_1' \
+  -H 'accept: application/json' \
+  -H 'X-CSRF-TOKEN: VB6s9Y4vjE0M7oiGz0Q3qAkc10GTJQxkgQA7uJqu'
+
+
+
+  {
+  "data": [
+    {
+      "id": 1,
+      "title": "book_title_1",
+      "author": "book_author_1",
+      "year_of_publication": 1901,
+      "publisher": "Random Publisher 1",
+      "is_rented": false,
+      "client": null
+    },
+    {
+      "id": 10,
+      "title": "book_title_10",
+      "author": "book_author_10",
+      "year_of_publication": 1910,
+      "publisher": "Random Publisher 10",
+      "is_rented": true,
+      "client": {
+        "id": 3,
+        "first_name": "TESTSETEST_TESTSETSET",
+        "last_name": "ETSETSETSETSET-ETSETSETSETSETSETSE-ETSETSETSETSETSE",
+        "rentedBooks": [
+          {
+            "id": 8,
+            "title": "book_title_8",
+            "author": "book_author_8"
+          },
+          {
+            "id": 10,
+            "title": "book_title_10",
+            "author": "book_author_10"
+          },
+          {
+            "id": 46,
+            "title": "book_title_46",
+            "author": "book_author_46"
+          }
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "title": "book_title_11",
+      "author": "book_author_11",
+      "year_of_publication": 1911,
+      "publisher": "Random Publisher 11",
+      "is_rented": true,
+      "client": {
+        "id": 2,
+        "first_name": "TESTESTSETSETSET",
+        "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+        "rentedBooks": [
+          {
+            "id": 4,
+            "title": "book_title_4",
+            "author": "book_author_4"
+          },
+          {
+            "id": 6,
+            "title": "book_title_6",
+            "author": "book_author_6"
+          },
+          {
+            "id": 9,
+            "title": "book_title_9",
+            "author": "book_author_9"
+          },
+          {
+            "id": 11,
+            "title": "book_title_11",
+            "author": "book_author_11"
+          },
+          {
+            "id": 12,
+            "title": "book_title_12",
+            "author": "book_author_12"
+          },
+          {
+            "id": 13,
+            "title": "book_title_13",
+            "author": "book_author_13"
+          },
+          {
+            "id": 14,
+            "title": "book_title_14",
+            "author": "book_author_14"
+          },
+          {
+            "id": 15,
+            "title": "book_title_15",
+            "author": "book_author_15"
+          },
+          {
+            "id": 16,
+            "title": "book_title_16",
+            "author": "book_author_16"
+          },
+          {
+            "id": 17,
+            "title": "book_title_17",
+            "author": "book_author_17"
+          },
+          {
+            "id": 18,
+            "title": "book_title_18",
+            "author": "book_author_18"
+          },
+          {
+            "id": 19,
+            "title": "book_title_19",
+            "author": "book_author_19"
+          },
+          {
+            "id": 20,
+            "title": "book_title_20",
+            "author": "book_author_20"
+          },
+          {
+            "id": 21,
+            "title": "book_title_21",
+            "author": "book_author_21"
+          },
+          {
+            "id": 22,
+            "title": "book_title_22",
+            "author": "book_author_22"
+          },
+          {
+            "id": 24,
+            "title": "book_title_24",
+            "author": "book_author_24"
+          },
+          {
+            "id": 25,
+            "title": "book_title_25",
+            "author": "book_author_25"
+          },
+          {
+            "id": 49,
+            "title": "book_title_49",
+            "author": "book_author_49"
+          },
+          {
+            "id": 50,
+            "title": "book_title_50",
+            "author": "book_author_50"
+          }
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "title": "book_title_12",
+      "author": "book_author_12",
+      "year_of_publication": 1912,
+      "publisher": "Random Publisher 12",
+      "is_rented": true,
+      "client": {
+        "id": 2,
+        "first_name": "TESTESTSETSETSET",
+        "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+        "rentedBooks": [
+          {
+            "id": 4,
+            "title": "book_title_4",
+            "author": "book_author_4"
+          },
+          {
+            "id": 6,
+            "title": "book_title_6",
+            "author": "book_author_6"
+          },
+          {
+            "id": 9,
+            "title": "book_title_9",
+            "author": "book_author_9"
+          },
+          {
+            "id": 11,
+            "title": "book_title_11",
+            "author": "book_author_11"
+          },
+          {
+            "id": 12,
+            "title": "book_title_12",
+            "author": "book_author_12"
+          },
+          {
+            "id": 13,
+            "title": "book_title_13",
+            "author": "book_author_13"
+          },
+          {
+            "id": 14,
+            "title": "book_title_14",
+            "author": "book_author_14"
+          },
+          {
+            "id": 15,
+            "title": "book_title_15",
+            "author": "book_author_15"
+          },
+          {
+            "id": 16,
+            "title": "book_title_16",
+            "author": "book_author_16"
+          },
+          {
+            "id": 17,
+            "title": "book_title_17",
+            "author": "book_author_17"
+          },
+          {
+            "id": 18,
+            "title": "book_title_18",
+            "author": "book_author_18"
+          },
+          {
+            "id": 19,
+            "title": "book_title_19",
+            "author": "book_author_19"
+          },
+          {
+            "id": 20,
+            "title": "book_title_20",
+            "author": "book_author_20"
+          },
+          {
+            "id": 21,
+            "title": "book_title_21",
+            "author": "book_author_21"
+          },
+          {
+            "id": 22,
+            "title": "book_title_22",
+            "author": "book_author_22"
+          },
+          {
+            "id": 24,
+            "title": "book_title_24",
+            "author": "book_author_24"
+          },
+          {
+            "id": 25,
+            "title": "book_title_25",
+            "author": "book_author_25"
+          },
+          {
+            "id": 49,
+            "title": "book_title_49",
+            "author": "book_author_49"
+          },
+          {
+            "id": 50,
+            "title": "book_title_50",
+            "author": "book_author_50"
+          }
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "title": "book_title_13",
+      "author": "book_author_13",
+      "year_of_publication": 1913,
+      "publisher": "Random Publisher 13",
+      "is_rented": true,
+      "client": {
+        "id": 2,
+        "first_name": "TESTESTSETSETSET",
+        "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+        "rentedBooks": [
+          {
+            "id": 4,
+            "title": "book_title_4",
+            "author": "book_author_4"
+          },
+          {
+            "id": 6,
+            "title": "book_title_6",
+            "author": "book_author_6"
+          },
+          {
+            "id": 9,
+            "title": "book_title_9",
+            "author": "book_author_9"
+          },
+          {
+            "id": 11,
+            "title": "book_title_11",
+            "author": "book_author_11"
+          },
+          {
+            "id": 12,
+            "title": "book_title_12",
+            "author": "book_author_12"
+          },
+          {
+            "id": 13,
+            "title": "book_title_13",
+            "author": "book_author_13"
+          },
+          {
+            "id": 14,
+            "title": "book_title_14",
+            "author": "book_author_14"
+          },
+          {
+            "id": 15,
+            "title": "book_title_15",
+            "author": "book_author_15"
+          },
+          {
+            "id": 16,
+            "title": "book_title_16",
+            "author": "book_author_16"
+          },
+          {
+            "id": 17,
+            "title": "book_title_17",
+            "author": "book_author_17"
+          },
+          {
+            "id": 18,
+            "title": "book_title_18",
+            "author": "book_author_18"
+          },
+          {
+            "id": 19,
+            "title": "book_title_19",
+            "author": "book_author_19"
+          },
+          {
+            "id": 20,
+            "title": "book_title_20",
+            "author": "book_author_20"
+          },
+          {
+            "id": 21,
+            "title": "book_title_21",
+            "author": "book_author_21"
+          },
+          {
+            "id": 22,
+            "title": "book_title_22",
+            "author": "book_author_22"
+          },
+          {
+            "id": 24,
+            "title": "book_title_24",
+            "author": "book_author_24"
+          },
+          {
+            "id": 25,
+            "title": "book_title_25",
+            "author": "book_author_25"
+          },
+          {
+            "id": 49,
+            "title": "book_title_49",
+            "author": "book_author_49"
+          },
+          {
+            "id": 50,
+            "title": "book_title_50",
+            "author": "book_author_50"
+          }
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "title": "book_title_14",
+      "author": "book_author_14",
+      "year_of_publication": 1914,
+      "publisher": "Random Publisher 14",
+      "is_rented": true,
+      "client": {
+        "id": 2,
+        "first_name": "TESTESTSETSETSET",
+        "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+        "rentedBooks": [
+          {
+            "id": 4,
+            "title": "book_title_4",
+            "author": "book_author_4"
+          },
+          {
+            "id": 6,
+            "title": "book_title_6",
+            "author": "book_author_6"
+          },
+          {
+            "id": 9,
+            "title": "book_title_9",
+            "author": "book_author_9"
+          },
+          {
+            "id": 11,
+            "title": "book_title_11",
+            "author": "book_author_11"
+          },
+          {
+            "id": 12,
+            "title": "book_title_12",
+            "author": "book_author_12"
+          },
+          {
+            "id": 13,
+            "title": "book_title_13",
+            "author": "book_author_13"
+          },
+          {
+            "id": 14,
+            "title": "book_title_14",
+            "author": "book_author_14"
+          },
+          {
+            "id": 15,
+            "title": "book_title_15",
+            "author": "book_author_15"
+          },
+          {
+            "id": 16,
+            "title": "book_title_16",
+            "author": "book_author_16"
+          },
+          {
+            "id": 17,
+            "title": "book_title_17",
+            "author": "book_author_17"
+          },
+          {
+            "id": 18,
+            "title": "book_title_18",
+            "author": "book_author_18"
+          },
+          {
+            "id": 19,
+            "title": "book_title_19",
+            "author": "book_author_19"
+          },
+          {
+            "id": 20,
+            "title": "book_title_20",
+            "author": "book_author_20"
+          },
+          {
+            "id": 21,
+            "title": "book_title_21",
+            "author": "book_author_21"
+          },
+          {
+            "id": 22,
+            "title": "book_title_22",
+            "author": "book_author_22"
+          },
+          {
+            "id": 24,
+            "title": "book_title_24",
+            "author": "book_author_24"
+          },
+          {
+            "id": 25,
+            "title": "book_title_25",
+            "author": "book_author_25"
+          },
+          {
+            "id": 49,
+            "title": "book_title_49",
+            "author": "book_author_49"
+          },
+          {
+            "id": 50,
+            "title": "book_title_50",
+            "author": "book_author_50"
+          }
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "title": "book_title_15",
+      "author": "book_author_15",
+      "year_of_publication": 1915,
+      "publisher": "Random Publisher 15",
+      "is_rented": true,
+      "client": {
+        "id": 2,
+        "first_name": "TESTESTSETSETSET",
+        "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+        "rentedBooks": [
+          {
+            "id": 4,
+            "title": "book_title_4",
+            "author": "book_author_4"
+          },
+          {
+            "id": 6,
+            "title": "book_title_6",
+            "author": "book_author_6"
+          },
+          {
+            "id": 9,
+            "title": "book_title_9",
+            "author": "book_author_9"
+          },
+          {
+            "id": 11,
+            "title": "book_title_11",
+            "author": "book_author_11"
+          },
+          {
+            "id": 12,
+            "title": "book_title_12",
+            "author": "book_author_12"
+          },
+          {
+            "id": 13,
+            "title": "book_title_13",
+            "author": "book_author_13"
+          },
+          {
+            "id": 14,
+            "title": "book_title_14",
+            "author": "book_author_14"
+          },
+          {
+            "id": 15,
+            "title": "book_title_15",
+            "author": "book_author_15"
+          },
+          {
+            "id": 16,
+            "title": "book_title_16",
+            "author": "book_author_16"
+          },
+          {
+            "id": 17,
+            "title": "book_title_17",
+            "author": "book_author_17"
+          },
+          {
+            "id": 18,
+            "title": "book_title_18",
+            "author": "book_author_18"
+          },
+          {
+            "id": 19,
+            "title": "book_title_19",
+            "author": "book_author_19"
+          },
+          {
+            "id": 20,
+            "title": "book_title_20",
+            "author": "book_author_20"
+          },
+          {
+            "id": 21,
+            "title": "book_title_21",
+            "author": "book_author_21"
+          },
+          {
+            "id": 22,
+            "title": "book_title_22",
+            "author": "book_author_22"
+          },
+          {
+            "id": 24,
+            "title": "book_title_24",
+            "author": "book_author_24"
+          },
+          {
+            "id": 25,
+            "title": "book_title_25",
+            "author": "book_author_25"
+          },
+          {
+            "id": 49,
+            "title": "book_title_49",
+            "author": "book_author_49"
+          },
+          {
+            "id": 50,
+            "title": "book_title_50",
+            "author": "book_author_50"
+          }
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "title": "book_title_16",
+      "author": "book_author_16",
+      "year_of_publication": 1916,
+      "publisher": "Random Publisher 16",
+      "is_rented": true,
+      "client": {
+        "id": 2,
+        "first_name": "TESTESTSETSETSET",
+        "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+        "rentedBooks": [
+          {
+            "id": 4,
+            "title": "book_title_4",
+            "author": "book_author_4"
+          },
+          {
+            "id": 6,
+            "title": "book_title_6",
+            "author": "book_author_6"
+          },
+          {
+            "id": 9,
+            "title": "book_title_9",
+            "author": "book_author_9"
+          },
+          {
+            "id": 11,
+            "title": "book_title_11",
+            "author": "book_author_11"
+          },
+          {
+            "id": 12,
+            "title": "book_title_12",
+            "author": "book_author_12"
+          },
+          {
+            "id": 13,
+            "title": "book_title_13",
+            "author": "book_author_13"
+          },
+          {
+            "id": 14,
+            "title": "book_title_14",
+            "author": "book_author_14"
+          },
+          {
+            "id": 15,
+            "title": "book_title_15",
+            "author": "book_author_15"
+          },
+          {
+            "id": 16,
+            "title": "book_title_16",
+            "author": "book_author_16"
+          },
+          {
+            "id": 17,
+            "title": "book_title_17",
+            "author": "book_author_17"
+          },
+          {
+            "id": 18,
+            "title": "book_title_18",
+            "author": "book_author_18"
+          },
+          {
+            "id": 19,
+            "title": "book_title_19",
+            "author": "book_author_19"
+          },
+          {
+            "id": 20,
+            "title": "book_title_20",
+            "author": "book_author_20"
+          },
+          {
+            "id": 21,
+            "title": "book_title_21",
+            "author": "book_author_21"
+          },
+          {
+            "id": 22,
+            "title": "book_title_22",
+            "author": "book_author_22"
+          },
+          {
+            "id": 24,
+            "title": "book_title_24",
+            "author": "book_author_24"
+          },
+          {
+            "id": 25,
+            "title": "book_title_25",
+            "author": "book_author_25"
+          },
+          {
+            "id": 49,
+            "title": "book_title_49",
+            "author": "book_author_49"
+          },
+          {
+            "id": 50,
+            "title": "book_title_50",
+            "author": "book_author_50"
+          }
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "title": "book_title_17",
+      "author": "book_author_17",
+      "year_of_publication": 1917,
+      "publisher": "Random Publisher 17",
+      "is_rented": true,
+      "client": {
+        "id": 2,
+        "first_name": "TESTESTSETSETSET",
+        "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+        "rentedBooks": [
+          {
+            "id": 4,
+            "title": "book_title_4",
+            "author": "book_author_4"
+          },
+          {
+            "id": 6,
+            "title": "book_title_6",
+            "author": "book_author_6"
+          },
+          {
+            "id": 9,
+            "title": "book_title_9",
+            "author": "book_author_9"
+          },
+          {
+            "id": 11,
+            "title": "book_title_11",
+            "author": "book_author_11"
+          },
+          {
+            "id": 12,
+            "title": "book_title_12",
+            "author": "book_author_12"
+          },
+          {
+            "id": 13,
+            "title": "book_title_13",
+            "author": "book_author_13"
+          },
+          {
+            "id": 14,
+            "title": "book_title_14",
+            "author": "book_author_14"
+          },
+          {
+            "id": 15,
+            "title": "book_title_15",
+            "author": "book_author_15"
+          },
+          {
+            "id": 16,
+            "title": "book_title_16",
+            "author": "book_author_16"
+          },
+          {
+            "id": 17,
+            "title": "book_title_17",
+            "author": "book_author_17"
+          },
+          {
+            "id": 18,
+            "title": "book_title_18",
+            "author": "book_author_18"
+          },
+          {
+            "id": 19,
+            "title": "book_title_19",
+            "author": "book_author_19"
+          },
+          {
+            "id": 20,
+            "title": "book_title_20",
+            "author": "book_author_20"
+          },
+          {
+            "id": 21,
+            "title": "book_title_21",
+            "author": "book_author_21"
+          },
+          {
+            "id": 22,
+            "title": "book_title_22",
+            "author": "book_author_22"
+          },
+          {
+            "id": 24,
+            "title": "book_title_24",
+            "author": "book_author_24"
+          },
+          {
+            "id": 25,
+            "title": "book_title_25",
+            "author": "book_author_25"
+          },
+          {
+            "id": 49,
+            "title": "book_title_49",
+            "author": "book_author_49"
+          },
+          {
+            "id": 50,
+            "title": "book_title_50",
+            "author": "book_author_50"
+          }
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "title": "book_title_18",
+      "author": "book_author_18",
+      "year_of_publication": 1918,
+      "publisher": "Random Publisher 18",
+      "is_rented": true,
+      "client": {
+        "id": 2,
+        "first_name": "TESTESTSETSETSET",
+        "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+        "rentedBooks": [
+          {
+            "id": 4,
+            "title": "book_title_4",
+            "author": "book_author_4"
+          },
+          {
+            "id": 6,
+            "title": "book_title_6",
+            "author": "book_author_6"
+          },
+          {
+            "id": 9,
+            "title": "book_title_9",
+            "author": "book_author_9"
+          },
+          {
+            "id": 11,
+            "title": "book_title_11",
+            "author": "book_author_11"
+          },
+          {
+            "id": 12,
+            "title": "book_title_12",
+            "author": "book_author_12"
+          },
+          {
+            "id": 13,
+            "title": "book_title_13",
+            "author": "book_author_13"
+          },
+          {
+            "id": 14,
+            "title": "book_title_14",
+            "author": "book_author_14"
+          },
+          {
+            "id": 15,
+            "title": "book_title_15",
+            "author": "book_author_15"
+          },
+          {
+            "id": 16,
+            "title": "book_title_16",
+            "author": "book_author_16"
+          },
+          {
+            "id": 17,
+            "title": "book_title_17",
+            "author": "book_author_17"
+          },
+          {
+            "id": 18,
+            "title": "book_title_18",
+            "author": "book_author_18"
+          },
+          {
+            "id": 19,
+            "title": "book_title_19",
+            "author": "book_author_19"
+          },
+          {
+            "id": 20,
+            "title": "book_title_20",
+            "author": "book_author_20"
+          },
+          {
+            "id": 21,
+            "title": "book_title_21",
+            "author": "book_author_21"
+          },
+          {
+            "id": 22,
+            "title": "book_title_22",
+            "author": "book_author_22"
+          },
+          {
+            "id": 24,
+            "title": "book_title_24",
+            "author": "book_author_24"
+          },
+          {
+            "id": 25,
+            "title": "book_title_25",
+            "author": "book_author_25"
+          },
+          {
+            "id": 49,
+            "title": "book_title_49",
+            "author": "book_author_49"
+          },
+          {
+            "id": 50,
+            "title": "book_title_50",
+            "author": "book_author_50"
+          }
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "title": "book_title_19",
+      "author": "book_author_19",
+      "year_of_publication": 1919,
+      "publisher": "Random Publisher 19",
+      "is_rented": true,
+      "client": {
+        "id": 2,
+        "first_name": "TESTESTSETSETSET",
+        "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+        "rentedBooks": [
+          {
+            "id": 4,
+            "title": "book_title_4",
+            "author": "book_author_4"
+          },
+          {
+            "id": 6,
+            "title": "book_title_6",
+            "author": "book_author_6"
+          },
+          {
+            "id": 9,
+            "title": "book_title_9",
+            "author": "book_author_9"
+          },
+          {
+            "id": 11,
+            "title": "book_title_11",
+            "author": "book_author_11"
+          },
+          {
+            "id": 12,
+            "title": "book_title_12",
+            "author": "book_author_12"
+          },
+          {
+            "id": 13,
+            "title": "book_title_13",
+            "author": "book_author_13"
+          },
+          {
+            "id": 14,
+            "title": "book_title_14",
+            "author": "book_author_14"
+          },
+          {
+            "id": 15,
+            "title": "book_title_15",
+            "author": "book_author_15"
+          },
+          {
+            "id": 16,
+            "title": "book_title_16",
+            "author": "book_author_16"
+          },
+          {
+            "id": 17,
+            "title": "book_title_17",
+            "author": "book_author_17"
+          },
+          {
+            "id": 18,
+            "title": "book_title_18",
+            "author": "book_author_18"
+          },
+          {
+            "id": 19,
+            "title": "book_title_19",
+            "author": "book_author_19"
+          },
+          {
+            "id": 20,
+            "title": "book_title_20",
+            "author": "book_author_20"
+          },
+          {
+            "id": 21,
+            "title": "book_title_21",
+            "author": "book_author_21"
+          },
+          {
+            "id": 22,
+            "title": "book_title_22",
+            "author": "book_author_22"
+          },
+          {
+            "id": 24,
+            "title": "book_title_24",
+            "author": "book_author_24"
+          },
+          {
+            "id": 25,
+            "title": "book_title_25",
+            "author": "book_author_25"
+          },
+          {
+            "id": 49,
+            "title": "book_title_49",
+            "author": "book_author_49"
+          },
+          {
+            "id": 50,
+            "title": "book_title_50",
+            "author": "book_author_50"
+          }
+        ]
+      }
+    },
+    {
+      "id": 61,
+      "title": "book_title_1",
+      "author": "book_author_1",
+      "year_of_publication": 1901,
+      "publisher": "Random Publisher 1",
+      "is_rented": false,
+      "client": null
+    },
+    {
+      "id": 70,
+      "title": "book_title_10",
+      "author": "book_author_10",
+      "year_of_publication": 1910,
+      "publisher": "Random Publisher 10",
+      "is_rented": false,
+      "client": null
+    },
+    {
+      "id": 71,
+      "title": "book_title_11",
+      "author": "book_author_11",
+      "year_of_publication": 1911,
+      "publisher": "Random Publisher 11",
+      "is_rented": false,
+      "client": null
+    },
+    {
+      "id": 72,
+      "title": "book_title_12",
+      "author": "book_author_12",
+      "year_of_publication": 1912,
+      "publisher": "Random Publisher 12",
+      "is_rented": false,
+      "client": null
+    },
+    {
+      "id": 73,
+      "title": "book_title_13",
+      "author": "book_author_13",
+      "year_of_publication": 1913,
+      "publisher": "Random Publisher 13",
+      "is_rented": false,
+      "client": null
+    },
+    {
+      "id": 74,
+      "title": "book_title_14",
+      "author": "book_author_14",
+      "year_of_publication": 1914,
+      "publisher": "Random Publisher 14",
+      "is_rented": false,
+      "client": null
+    },
+    {
+      "id": 75,
+      "title": "book_title_15",
+      "author": "book_author_15",
+      "year_of_publication": 1915,
+      "publisher": "Random Publisher 15",
+      "is_rented": false,
+      "client": null
+    },
+    {
+      "id": 76,
+      "title": "book_title_16",
+      "author": "book_author_16",
+      "year_of_publication": 1916,
+      "publisher": "Random Publisher 16",
+      "is_rented": false,
+      "client": null
+    },
+    {
+      "id": 77,
+      "title": "book_title_17",
+      "author": "book_author_17",
+      "year_of_publication": 1917,
+      "publisher": "Random Publisher 17",
+      "is_rented": false,
+      "client": null
+    }
+  ],
+  "pagination": {
+    "total": 22,
+    "perPage": 20,
+    "currentPage": 1,
+    "lastPage": 2,
+    "nextPageUrl": "http://localhost:8000/v3/books/search?title=book_title_1&author=book_author_1&page=2",
+    "prevPageUrl": null
+  }
+}
+###
+
+# Show a specific book (GET)
+curl -X 'GET' \
+  'http://localhost:8000/v3/books/5' \
+  -H 'accept: application/json' \
+  -H 'X-CSRF-TOKEN: VB6s9Y4vjE0M7oiGz0Q3qAkc10GTJQxkgQA7uJqu'
+
+
+{
+  "id": 5,
+  "title": "book_title_5",
+  "author": "book_author_5",
+  "year_of_publication": 1905,
+  "publisher": "Random Publisher 5",
+  "is_rented": false,
+  "client": null
+}
+###
+
+
+# Rent a book (POST)
+curl -X 'POST' \
+  'http://localhost:8000/v3/books/23/rent' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'X-CSRF-TOKEN: VB6s9Y4vjE0M7oiGz0Q3qAkc10GTJQxkgQA7uJqu' \
+  -d '{
+  "client_id": 1
+}'
+
+{
+  "message": "The selected client does not exist in our records. Please choose a valid client.",
+  "errors": {
+    "client_id": [
+      "The selected client does not exist in our records. Please choose a valid client."
+    ]
+  }
+}
+
+###
+
+# Return a book (POST)
+curl -X 'POST' \
+  'http://localhost:8000/v3/books/5/return' \
+  -H 'accept: application/json' \
+  -H 'X-CSRF-TOKEN: VB6s9Y4vjE0M7oiGz0Q3qAkc10GTJQxkgQA7uJqu' \
+  -d ''
+
+{
+  "error": "This book is not currently rented."
+}
+
+###
+
+# List all clients (GET)
+curl -X 'GET' \
+  'http://localhost:8000/v3/clients' \
+  -H 'accept: application/json' \
+  -H 'X-CSRF-TOKEN: VB6s9Y4vjE0M7oiGz0Q3qAkc10GTJQxkgQA7uJqu'
+
+  [{"id":2,"first_name":"TESTESTSETSETSET","last_name":"tetesrtertgesrtgsertgsert sert sert sert sert ser tser","rentedBooks":[{"id":4,"title":"book_title_4","author":"book_author_4"},{"id":6,"title":"book_title_6","author":"book_author_6"},{"id":9,"title":"book_title_9","author":"book_author_9"},{"id":11,"title":"book_title_11","author":"book_author_11"},{"id":12,"title":"book_title_12","author":"book_author_12"},{"id":13,"title":"book_title_13","author":"book_author_13"},{"id":14,"title":"book_title_14","author":"book_author_14"},{"id":15,"title":"book_title_15","author":"book_author_15"},{"id":16,"title":"book_title_16","author":"book_author_16"},{"id":17,"title":"book_title_17","author":"book_author_17"},{"id":18,"title":"book_title_18","author":"book_author_18"},{"id":19,"title":"book_title_19","author":"book_author_19"},{"id":20,"title":"book_title_20","author":"book_author_20"},{"id":21,"title":"book_title_21","author":"book_author_21"},{"id":22,"title":"book_title_22","author":"book_author_22"},{"id":24,"title":"book_title_24","author":"book_author_24"},{"id":25,"title":"book_title_25","author":"book_author_25"},{"id":49,"title":"book_title_49","author":"book_author_49"},{"id":50,"title":"book_title_50","author":"book_author_50"}]},{"id":3,"first_name":"TESTSETEST_TESTSETSET","last_name":"ETSETSETSETSET-ETSETSETSETSETSETSE-ETSETSETSETSETSE","rentedBooks":[{"id":8,"title":"book_title_8","author":"book_author_8"},{"id":10,"title":"book_title_10","author":"book_author_10"},{"id":46,"title":"book_title_46","author":"book_author_46"}]},{"id":4,"first_name":"ESTSETSETSETES=ESTSETSEtSEtSET","last_name":"DGL'KDMJGLK;JDSFZJNG;KDRJHN SALERKGFJNDAL;KGJ SDFL;KJG O;DLRSJ","rentedBooks":[{"id":7,"title":"book_title_7","author":"book_author_7"}]},{"id":5,"first_name":"ASDFASDF","last_name":"ADSF ASRF","rentedBooks":[{"id":60,"title":"book_title_60","author":"book_author_60"}]},{"id":8,"first_name":"string","last_name":"string","rentedBooks":[]},{"id":9,"first_name":"string","last_name":"string","rentedBooks":[]},{"id":10,"first_name":"TEST","last_name":"TEST","rentedBooks":[]},{"id":11,"first_name":"TEST","last_name":"TEST","rentedBooks":[]},{"id":12,"first_name":"TEST","last_name":"TEST","rentedBooks":[]}] 
+
+###
+
+# Show a specific client (GET)
+curl -X 'GET' \
+  'http://localhost:8000/v3/clients/2' \
+  -H 'accept: application/json' \
+  -H 'X-CSRF-TOKEN: VB6s9Y4vjE0M7oiGz0Q3qAkc10GTJQxkgQA7uJqu'
+
+
+{
+  "id": 2,
+  "first_name": "TESTESTSETSETSET",
+  "last_name": "tetesrtertgesrtgsertgsert sert sert sert sert ser tser",
+  "rentedBooks": [
+    {
+      "id": 4,
+      "title": "book_title_4",
+      "author": "book_author_4"
+    },
+    {
+      "id": 6,
+      "title": "book_title_6",
+      "author": "book_author_6"
+    },
+    {
+      "id": 9,
+      "title": "book_title_9",
+      "author": "book_author_9"
+    },
+    {
+      "id": 11,
+      "title": "book_title_11",
+      "author": "book_author_11"
+    },
+    {
+      "id": 12,
+      "title": "book_title_12",
+      "author": "book_author_12"
+    },
+    {
+      "id": 13,
+      "title": "book_title_13",
+      "author": "book_author_13"
+    },
+    {
+      "id": 14,
+      "title": "book_title_14",
+      "author": "book_author_14"
+    },
+    {
+      "id": 15,
+      "title": "book_title_15",
+      "author": "book_author_15"
+    },
+    {
+      "id": 16,
+      "title": "book_title_16",
+      "author": "book_author_16"
+    },
+    {
+      "id": 17,
+      "title": "book_title_17",
+      "author": "book_author_17"
+    },
+    {
+      "id": 18,
+      "title": "book_title_18",
+      "author": "book_author_18"
+    },
+    {
+      "id": 19,
+      "title": "book_title_19",
+      "author": "book_author_19"
+    },
+    {
+      "id": 20,
+      "title": "book_title_20",
+      "author": "book_author_20"
+    },
+    {
+      "id": 21,
+      "title": "book_title_21",
+      "author": "book_author_21"
+    },
+    {
+      "id": 22,
+      "title": "book_title_22",
+      "author": "book_author_22"
+    },
+    {
+      "id": 24,
+      "title": "book_title_24",
+      "author": "book_author_24"
+    },
+    {
+      "id": 25,
+      "title": "book_title_25",
+      "author": "book_author_25"
+    },
+    {
+      "id": 49,
+      "title": "book_title_49",
+      "author": "book_author_49"
+    },
+    {
+      "id": 50,
+      "title": "book_title_50",
+      "author": "book_author_50"
+    }
+  ]
+}
+###
+
+# Create a new client (POST)
+curl -X 'POST' \
+  'http://localhost:8000/v3/clients' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'X-CSRF-TOKEN: VB6s9Y4vjE0M7oiGz0Q3qAkc10GTJQxkgQA7uJqu' \
+  -d '{
+  "first_name": "TEXT_A_F",
+  "last_name": "TEST_A_L"
+}'
+
+
+{
+  "id": 13,
+  "first_name": "TEXT_A_F",
+  "last_name": "TEST_A_L",
+  "rentedBooks": []
+}
+
+###
+
+# Delete a client (DELETE)
+curl -X 'DELETE' \
+  'http://localhost:8000/v3/clients/2' \
+  -H 'accept: */*' \
+  -H 'X-CSRF-TOKEN: VB6s9Y4vjE0M7oiGz0Q3qAkc10GTJQxkgQA7uJqu'
+  
+{
+  "error": "Client cannot be deleted because they have rented books."
+}
+
