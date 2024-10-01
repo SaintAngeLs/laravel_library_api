@@ -480,9 +480,8 @@ DELETE /v3/clients/{id}
 
 ### **Swagger Integration**
 
-
 You can access the API documentation in a user-friendly UI by visiting the Swagger UI at `/api/documentation`. The Swagger UI provides the ability to interact with the API directly from the browser.
-----
+
 ### Web Routes for MVC
 
 - **Books Pages**:
