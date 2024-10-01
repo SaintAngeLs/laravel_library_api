@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Services\Client\ClientService;
-use Illuminate\Http\Request;
+use App\Http\Requests\Client\StoreClientRequest;
+use App\Http\Requests\Client\DeleteClientRequest;
 use App\Exceptions\Http\Client\ClientNotFoundException;
 use App\Exceptions\Http\Client\ClientHasRentedBooksException;
 use Illuminate\Http\JsonResponse;
@@ -91,11 +92,11 @@ class ClientController extends Controller
      *     )
      * )
      */
-    public function store(Request $request): JsonResponse
+    public function store(StoreClientRequest $request): JsonResponse
     {
-        $data = $request->only(['first_name', 'last_name']);
+        $data = $request->validated();
         $client = $this->clientService->createClient($data);
-        return response()->json($client, 201);
+        return response()->json($client, 201); // Created
     }
 
     /**
@@ -124,7 +125,7 @@ class ClientController extends Controller
      *     )
      * )
      */
-    public function destroy($id): JsonResponse
+    public function destroy($id, DeleteClientRequest $request): JsonResponse
     {
         try {
             $this->clientService->deleteClient($id);

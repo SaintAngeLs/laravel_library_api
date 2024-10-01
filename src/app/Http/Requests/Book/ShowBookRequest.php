@@ -11,7 +11,7 @@ class ShowBookRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,19 @@ class ShowBookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+
+        ];
+    }
+
+    /**
+     * Custom messages for validation errors.
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+           
         ];
     }
 }

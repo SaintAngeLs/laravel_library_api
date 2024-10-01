@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Book;
+namespace App\Http\Requests\Client;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RentBookRequest extends FormRequest
+class StoreClientRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,8 @@ class RentBookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'client_id' => ['required', 'exists:clients,id'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
         ];
     }
 
@@ -34,8 +35,12 @@ class RentBookRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'client_id.required' => 'The client selection is required to rent a book.',
-            'client_id.exists' => 'The selected client does not exist in our records. Please choose a valid client.',
+            'first_name.required' => 'First Name is required.',
+            'first_name.string' => 'First Name must be a string.',
+            'first_name.max' => 'First Name may not be greater than 255 characters.',
+            'last_name.required' => 'Last Name is required.',
+            'last_name.string' => 'Last Name must be a string.',
+            'last_name.max' => 'Last Name may not be greater than 255 characters.',
         ];
     }
 }

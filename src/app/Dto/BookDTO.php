@@ -1,18 +1,21 @@
 <?php
 
-namespace App\DTO;
+namespace App\Dto;
+
+use App\Models\Book;
+use App\Dto\ClientDTO;
 
 class BookDTO
 {
-    public $id;
-    public $title;
-    public $author;
-    public $year_of_publication;
-    public $publisher;
-    public $is_rented;
-    public $client;
+    public int $id;
+    public string $title;
+    public string $author;
+    public ?int $year_of_publication;
+    public string $publisher;
+    public bool $is_rented;
+    public ?ClientDTO $client;
 
-    public function __construct($book)
+    public function __construct(Book $book)
     {
         $this->id = $book->id;
         $this->title = $book->title;
@@ -23,12 +26,18 @@ class BookDTO
         $this->client = $book->is_rented ? $this->mapClient($book->client) : null;
     }
 
-    private function mapClient($client)
+    /**
+     * Maps client information to ClientDTO.
+     *
+     * @param \App\Models\Client|null $client
+     * @return ClientDTO|null
+     */
+    private function mapClient(?\App\Models\Client $client): ?ClientDTO
     {
-        return [
-            'id' => $client->id,
-            'first_name' => $client->first_name,
-            'last_name' => $client->last_name,
-        ];
+        if (!$client) {
+            return null;
+        }
+
+        return new ClientDTO($client);
     }
 }

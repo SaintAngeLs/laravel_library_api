@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Client;
 use App\Exceptions\Http\Client\ClientNotFoundException;
 use App\Exceptions\Http\Client\ClientHasRentedBooksException;
 use App\Http\Controllers\Controller;
+use App\Models\Book;
+use App\Models\Client;
 use App\Services\Client\ClientService;
-use Illuminate\Http\Request;
+use App\Http\Requests\Client\StoreClientRequest;
+use App\Http\Requests\Client\DeleteClientRequest;
 
 class ClientViewController extends Controller
 {
@@ -35,8 +38,10 @@ class ClientViewController extends Controller
     public function show($id)
     {
         try {
-            $client = $this->clientService->getClientDetails($id);
-            return view('pages.client.show', compact('client'));
+            $client = Client::findOrFail($id);
+            $rentedBooks = Book::where('rented_by', $client->id)->get();
+
+            return view('pages.client.show', compact('client', 'rentedBooks'));
         } catch (ClientNotFoundException $e) {
             return redirect()->route('pages.client.index')->with('error', $e->getMessage());
         }
@@ -53,23 +58,29 @@ class ClientViewController extends Controller
     /**
      * Store a new client in the system.
      *
-     * @param Request $request
+     * @param StoreClientRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreClientRequest $request)
     {
-        $data = $request->only(['first_name', 'last_name']);
-        $this->clientService->createClient($data);
-        return redirect()->route('pages.client.index')->with('success', 'Client created successfully.');
+        try {
+            $data = $request->validated();  
+            $this->clientService->createClient($data);
+            return redirect()->route('pages.client.index')->with('success', 'Client created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->with('error', 'There was an issue creating the client: ' . $e->getMessage());
+        }
     }
+
 
     /**
      * Delete a client by ID.
      *
+     * @param DeleteClientRequest $request
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(DeleteClientRequest $request, $id)
     {
         try {
             $this->clientService->deleteClient($id);

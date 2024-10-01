@@ -4,10 +4,11 @@ namespace App\Services\Book;
 
 use App\Dto\BookDTO;
 use App\Exceptions\Core\Book\BookAlreadyRentedException;
-use App\Exceptions\Core\Book\BookNotRentedException;
 use App\Exceptions\Http\Book\BookNotFoundException;
 use App\Repositories\BookRepositoryInterface;
 use App\Repositories\ClientRepositoryInterface;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class BookService
 {
@@ -22,7 +23,10 @@ class BookService
         $this->clientRepository = $clientRepository;
     }
 
-    public function listBooksPaginated($perPage = null)
+    /**
+     * List paginated books, returning a collection of BookDTOs.
+     */
+    public function listBooksPaginated($perPage = null): Collection
     {
         $perPage = $perPage ?? self::DEFAULT_PAGINATION;
         $books = $this->bookRepository->getAllBooksPaginated($perPage);
@@ -32,17 +36,31 @@ class BookService
         });
     }
 
-    public function searchBooks(array $filters, $perPage = null)
+    /**
+     * Search books using filters and return a collection of BookDTOs.
+     */
+    public function searchBooks(array $filters, $perPage = null): LengthAwarePaginator
     {
         $perPage = $perPage ?? self::DEFAULT_PAGINATION;
-        $books = $this->bookRepository->searchBooks($filters, $perPage);
+        $paginatedBooks = $this->bookRepository->searchBooks($filters, $perPage);
 
-        return $books->map(function ($book) {
+        $mappedBooks = $paginatedBooks->getCollection()->map(function ($book) {
             return new BookDTO($book);
         });
+
+        return new LengthAwarePaginator(
+            $mappedBooks,
+            $paginatedBooks->total(),
+            $paginatedBooks->perPage(),
+            $paginatedBooks->currentPage(),
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
     }
 
-    public function getBookDetails($id)
+    /**
+     * Get details of a single book by its ID.
+     */
+    public function getBookDetails($id): BookDTO
     {
         $book = $this->bookRepository->findBookById($id);
 
@@ -50,9 +68,14 @@ class BookService
             throw new BookNotFoundException();
         }
 
+        $book->load('client');
+
         return new BookDTO($book);
     }
 
+    /**
+     * Rent a book to a client.
+     */
     public function rentBook($bookId, $clientId)
     {
         $book = $this->bookRepository->findBookById($bookId);
@@ -68,6 +91,9 @@ class BookService
         return $this->bookRepository->rentBook($book, $clientId);
     }
 
+    /**
+     * Return a rented book.
+     */
     public function returnBook($bookId)
     {
         $book = $this->bookRepository->findBookById($bookId);

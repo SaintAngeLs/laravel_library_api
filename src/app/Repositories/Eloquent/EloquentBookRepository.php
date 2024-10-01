@@ -17,7 +17,7 @@ class EloquentBookRepository implements BookRepositoryInterface
 
     public function searchBooks(array $filters, $perPage = 20)
     {
-        $query = Book::query();
+        $query = Book::query()->with('client');
 
         // Search by title
         if (!empty($filters['title'])) {

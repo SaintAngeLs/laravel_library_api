@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Book;
 
+use App\Exceptions\Http\Book\BookAlreadyRentedException;
 use App\Exceptions\Http\Book\BookNotFoundException;
-use App\Exceptions\Http\BookAlreadyRentedException;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Services\Book\BookService;
-use Illuminate\Http\Request;
+use App\Http\Requests\Book\RentBookRequest;
+use App\Http\Requests\Book\SearchBookRequest;
+use App\Http\Requests\Book\ShowBookRequest;
 
 class BookViewController extends Controller
 {
@@ -21,15 +23,11 @@ class BookViewController extends Controller
     /**
      * Display the book listing page with filters.
      */
-    public function index(Request $request)
+    public function index(SearchBookRequest $request)
     {
-        $filters = [
-            'title' => $request->input('title'),
-            'author' => $request->input('author'),
-            'publisher' => $request->input('publisher'),
-        ];
+        $filters = $request->only(['title', 'author', 'publisher', 'client']);
+        $perPage = $request->get('perPage', 20);
 
-        $perPage = 20;
         $books = $this->bookService->searchBooks($filters, $perPage);
 
         return view('pages.book.index', compact('books', 'filters'));
@@ -38,20 +36,16 @@ class BookViewController extends Controller
     /**
      * Search for books using filters and return JSON response.
      */
-    public function search(Request $request)
+    public function search(SearchBookRequest $request)
     {
-        $filters = [
-            'title' => $request->input('title'),
-            'author' => $request->input('author'),
-            'publisher' => $request->input('publisher'),
-        ];
-
+        // Request validation has already occurred in SearchBookRequest
+        $filters = $request->only(['title', 'author', 'publisher']);
         $perPage = $request->get('perPage', 20);
 
         $books = $this->bookService->searchBooks($filters, $perPage);
 
         return response()->json([
-            'data' => $books->items(),
+            'data' => $books->items()->toArray(),
             'pagination' => [
                 'total' => $books->total(),
                 'perPage' => $books->perPage(),
@@ -66,7 +60,7 @@ class BookViewController extends Controller
     /**
      * Show details of a specific book and handle the case where the book may not exist.
      */
-    public function show($id)
+    public function show(ShowBookRequest $request, $id)
     {
         try {
             $book = $this->bookService->getBookDetails($id);
@@ -86,9 +80,9 @@ class BookViewController extends Controller
     /**
      * Rent a book to a client and handle errors related to book availability.
      */
-    public function rentBook($bookId, Request $request)
+    public function rentBook($bookId, RentBookRequest $request)
     {
-        $clientId = $request->input('client_id');
+        $clientId = $request->validated()['client_id'];
 
         try {
             $this->bookService->rentBook($bookId, $clientId);

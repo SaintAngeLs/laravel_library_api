@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Book;
+namespace App\Http\Requests\Client;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RentBookRequest extends FormRequest
+class DeleteClientRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class RentBookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'client_id' => ['required', 'exists:clients,id'],
+            
         ];
     }
 
@@ -34,8 +34,7 @@ class RentBookRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'client_id.required' => 'The client selection is required to rent a book.',
-            'client_id.exists' => 'The selected client does not exist in our records. Please choose a valid client.',
+
         ];
     }
 }

@@ -4,16 +4,22 @@
         <nav class="mt-6">
             <ul>
                 <li class="py-2">
-                    <a href="#" class="text-white hover:text-gray-300">Dashboard</a>
+                    <a href="{{ route('dashboard') }}"
+                       class="{{ Route::is('dashboard') ? 'text-yellow-400' : 'text-white hover:text-gray-300' }}">
+                        Dashboard
+                    </a>
                 </li>
                 <li class="py-2">
-                    <a href="#" class="text-white hover:text-gray-300">Books</a>
+                    <a href="{{ route('pages.book.index') }}"
+                       class="{{ Route::is('pages.book.*') ? 'text-yellow-400' : 'text-white hover:text-gray-300' }}">
+                        Books
+                    </a>
                 </li>
                 <li class="py-2">
-                    <a href="#" class="text-white hover:text-gray-300">Clients</a>
-                </li>
-                <li class="py-2">
-                    <a href="#" class="text-white hover:text-gray-300">Settings</a>
+                    <a href="{{ route('pages.client.index') }}"
+                       class="{{ Route::is('pages.client.*') ? 'text-yellow-400' : 'text-white hover:text-gray-300' }}">
+                        Clients
+                    </a>
                 </li>
             </ul>
         </nav>

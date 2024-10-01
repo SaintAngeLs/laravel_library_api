@@ -11,7 +11,7 @@ class SearchBookRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,29 @@ class SearchBookRequest extends FormRequest
             'title' => ['nullable', 'string', 'max:255'],
             'author' => ['nullable', 'string', 'max:255'],
             'publisher' => ['nullable', 'string', 'max:255'],
+            'client' => ['nullable', 'string', 'max:255'],
             'perPage' => ['nullable', 'integer', 'min:1'],
+        ];
+    }
+
+    /**
+     * Get custom error messages for validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'title.string' => 'The title must be a valid string.',
+            'title.max' => 'The title may not be greater than 255 characters.',
+            'author.string' => 'The author name must be a valid string.',
+            'author.max' => 'The author name may not be greater than 255 characters.',
+            'publisher.string' => 'The publisher name must be a valid string.',
+            'publisher.max' => 'The publisher name may not be greater than 255 characters.',
+            'client.string' => 'The client name must be a valid string.',
+            'client.max' => 'The client name may not be greater than 255 characters.',
+            'perPage.integer' => 'The perPage value must be a valid integer.',
+            'perPage.min' => 'The perPage value must be at least 1.',
         ];
     }
 }

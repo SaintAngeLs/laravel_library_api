@@ -29,7 +29,7 @@ use App\Http\Controllers\Client\ClientController;
 
 Route::get('/', function () {
     return view('dashboard');
-});
+})->name('dashboard');
 
 Route::prefix('v3')->group(function () {
 
