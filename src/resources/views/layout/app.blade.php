@@ -8,6 +8,7 @@
     @vite('resources/js/app.js')
 
     <title>Laravel Library</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />

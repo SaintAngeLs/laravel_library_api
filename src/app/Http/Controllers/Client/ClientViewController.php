@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\Client\ClientService;
 use Illuminate\Http\Request;
 
-
-class ClientController extends Controller
+class ClientViewController extends Controller
 {
     protected $clientService;
 
@@ -19,25 +18,30 @@ class ClientController extends Controller
     public function index()
     {
         $clients = $this->clientService->listClients();
-        return response()->json($clients);
+        return view('pages.client.index', compact('clients'));
     }
 
     public function show($id)
     {
         $client = $this->clientService->getClientDetails($id);
-        return response()->json($client);
+        return view('pages.client.show', compact('client'));
+    }
+
+    public function create()
+    {
+        return view('pages.client.create');
     }
 
     public function store(Request $request)
     {
         $data = $request->only(['first_name', 'last_name']);
-        $client = $this->clientService->createClient($data);
-        return response()->json($client);
+        $this->clientService->createClient($data);
+        return redirect()->route('pages.client.index')->with('success', 'Client created successfully.');
     }
 
     public function destroy($id)
     {
         $this->clientService->deleteClient($id);
-        return response()->json(['message' => 'Client deleted successfully.']);
+        return redirect()->route('pages.client.index')->with('success', 'Client deleted successfully.');
     }
 }

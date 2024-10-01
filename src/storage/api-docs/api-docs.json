@@ -1,0 +1,303 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Library API Documentation",
+        "description": "This is the API documentation for the Library system.",
+        "contact": {
+            "email": "support@libraryapi.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Library API server"
+        }
+    ],
+    "paths": {
+        "/v3/books": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Get a list of books",
+                "operationId": "714b6bfd3e9abd4dd92854bb7b54d846",
+                "responses": {
+                    "200": {
+                        "description": "A list of books",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Book"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v3/books/search": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Search books with filters",
+                "operationId": "adce56dd6b4bbe420059ab351e7973e9",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "Search by title",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "author",
+                        "in": "query",
+                        "description": "Search by author",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "publisher",
+                        "in": "query",
+                        "description": "Search by publisher",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Filtered list of books",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Book"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "properties": {
+                                                "total": {
+                                                    "type": "integer"
+                                                },
+                                                "perPage": {
+                                                    "type": "integer"
+                                                },
+                                                "currentPage": {
+                                                    "type": "integer"
+                                                },
+                                                "lastPage": {
+                                                    "type": "integer"
+                                                },
+                                                "nextPageUrl": {
+                                                    "type": "string"
+                                                },
+                                                "prevPageUrl": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v3/books/{id}": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Get details of a specific book",
+                "operationId": "ebe70bba8b78349773f990261313facc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the book to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of the book",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Book"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Book not found"
+                    }
+                }
+            }
+        },
+        "/v3/books/{bookId}/rent": {
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Rent a book",
+                "operationId": "b7cf19f3dda6473abd5f8282f797a9c4",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "ID of the book to rent",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "client_id": {
+                                        "description": "ID of the client renting the book",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Book rented successfully"
+                    },
+                    "400": {
+                        "description": "Book cannot be rented"
+                    }
+                }
+            }
+        },
+        "/v3/books/{bookId}/return": {
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Return a rented book",
+                "operationId": "70181fadb706e0eadc4e918cffdbc59f",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "ID of the book to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Book returned successfully"
+                    },
+                    "400": {
+                        "description": "Book cannot be returned"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Book": {
+                "title": "Book",
+                "description": "Book model",
+                "properties": {
+                    "id": {
+                        "description": "ID of the book",
+                        "type": "integer"
+                    },
+                    "title": {
+                        "description": "Title of the book",
+                        "type": "string"
+                    },
+                    "author": {
+                        "description": "Author of the book",
+                        "type": "string"
+                    },
+                    "year_of_publication": {
+                        "description": "Year the book was published",
+                        "type": "integer"
+                    },
+                    "publisher": {
+                        "description": "Publisher of the book",
+                        "type": "string"
+                    },
+                    "is_rented": {
+                        "description": "Indicates if the book is rented",
+                        "type": "boolean"
+                    },
+                    "rented_by": {
+                        "description": "ID of the client who rented the book",
+                        "type": "integer",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Client": {
+                "title": "Client",
+                "description": "Client model",
+                "properties": {
+                    "id": {
+                        "description": "ID of the client",
+                        "type": "integer"
+                    },
+                    "first_name": {
+                        "description": "First name of the client",
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "description": "Last name of the client",
+                        "type": "string"
+                    },
+                    "rentedBooks": {
+                        "description": "Books rented by the client",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Book"
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Books",
+            "description": "Books"
+        }
+    ]
+}

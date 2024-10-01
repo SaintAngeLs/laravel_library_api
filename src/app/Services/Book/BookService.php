@@ -10,21 +10,26 @@ class BookService
     protected $bookRepository;
     protected $clientRepository;
 
+    const DEFAULT_PAGINATION = 20;
+
     public function __construct(BookRepositoryInterface $bookRepository, ClientRepositoryInterface $clientRepository)
     {
         $this->bookRepository = $bookRepository;
         $this->clientRepository = $clientRepository;
     }
 
-    public function listBooksPaginated($perPage = 20)
+    public function listBooksPaginated($perPage = null)
     {
+        $perPage = $perPage ?? self::DEFAULT_PAGINATION;
         return $this->bookRepository->getAllBooksPaginated($perPage);
     }
 
-    public function searchBooks($query)
+    public function searchBooks(array $filters, $perPage = null)
     {
-        return $this->bookRepository->searchBooks($query);
+        $perPage = $perPage ?? self::DEFAULT_PAGINATION;
+        return $this->bookRepository->searchBooks($filters, $perPage);
     }
+
 
     public function getBookDetails($id)
     {

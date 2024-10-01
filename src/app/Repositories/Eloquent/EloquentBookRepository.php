@@ -12,19 +12,41 @@ class EloquentBookRepository implements BookRepositoryInterface
         return Book::with('client')->paginate($perPage);
     }
 
-    public function searchBooks($query)
+    public function searchBooks(array $filters, $perPage = 20)
     {
-        return Book::where('title', 'LIKE', "%{$query}%")
-                    ->orWhere('author', 'LIKE', "%{$query}%")
-                    ->orWhereHas('client', function($q) use ($query) {
-                        $q->where('first_name', 'LIKE', "%{$query}%")
-                          ->orWhere('last_name', 'LIKE', "%{$query}%");
-                    })->get();
+        $query = Book::query();
+
+        // Search by title
+        if (!empty($filters['title'])) {
+            $query->where('title', 'LIKE', '%' . $filters['title'] . '%');
+        }
+
+        // Search by author
+        if (!empty($filters['author'])) {
+            $query->where('author', 'LIKE', '%' . $filters['author'] . '%');
+        }
+
+        // Search by publisher
+        if (!empty($filters['publisher'])) {
+            $query->where('publisher', 'LIKE', '%' . $filters['publisher'] . '%');
+        }
+
+        // Search by client (related model)
+        if (!empty($filters['client'])) {
+            $query->whereHas('client', function ($q) use ($filters) {
+                $q->where('first_name', 'LIKE', '%' . $filters['client'] . '%')
+                  ->orWhere('last_name', 'LIKE', '%' . $filters['client'] . '%');
+            });
+        }
+
+        // Return paginated results
+        return $query->paginate($perPage);
     }
+
 
     public function findBookById($id)
     {
-        return Book::with('client')->findOrFail($id);
+        return Book::with('client')->find($id);
     }
 
     public function rentBook($book, $clientId)

@@ -17,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(BookRepositoryInterface::class, EloquentBookRepository::class);
+        $this->app->bind(ClientRepositoryInterface::class, EloquentClientRepository::class);
+
+
         $this->app->bind(BookService::class, function ($app) {
             return new BookService(
                 $app->make(BookRepositoryInterface::class),
